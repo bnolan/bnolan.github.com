@@ -39,6 +39,8 @@ li{
 	left: -10px;
 	background: black;
 	-webkit-border-radius: 100px;
+	border-radius: 100px;
+	-moz-border-radius: 100px;
 	display: block;
 }
 
@@ -51,12 +53,14 @@ li{
 	border: none;
 	bottom: 40px;
 	right: 30px;
+	line-height: 25px;
 }
 
 h2.subtitle{
   position: absolute;
   top: 130px;
   left: 210px;
+	line-height: 20px;
 	margin: 40px 0;
 	font-size: 1.2em;
 	font-weight: normal;
@@ -70,6 +74,14 @@ h2.subtitle em{
 }
 
 h2.subtitle em:nth-child(2){
+}
+
+.postcontent p:nth-child(1):after{
+  content: "..";
+}
+
+.postcontent>* + *{
+  display: none;
 }
 
 .gridlinks{
@@ -210,3 +222,4 @@ pre{
   left: -22px;
   width: 18px;
 }
+

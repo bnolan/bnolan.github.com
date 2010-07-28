@@ -1,6 +1,6 @@
-When you're building an application for travellers, you come up against the problem of how do you get enough data in the system so that it's useful for 
-here are 455 cities with a poplation of more than 1,000,000 people, 1054 with more than 500,000 and 2851 with more than 150,000 people. 
+When you're building an application for travellers, you come up against the problem of how do you get enough data in the system so that it's useful for 455 cities with a population of more than one million people, 1054 with more than 500,000 and 2851 with more than 150,000 people. 
 
+Or to look at the problem a different way - the most visited cities in the world...
 
 # Most visited cities
 
