@@ -15,7 +15,9 @@ body, html {
   margin: 0;
   padding: 0;
 }
-.header { background: -webkit-gradient(linear, left top, left bottom, from(#777788), to(#888899)); }
+
+.header {  
+}
 .header h1 {
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -25,11 +27,10 @@ body, html {
   width: 600px;
   margin: auto;
   background: -webkit-gradient(linear, left top, left bottom, from(#888899), to(#9999aa));
+  border: 1px solid #aaa;
   padding: 50px 20px 20px 20px;
-  border-left: 1px solid #aaaaaa;
-  border-right: 1px solid #aaaaaa;
-  -webkit-transition: -webkit-transform 0.5s ease-in;
 }
+
 .main {
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
@@ -48,7 +49,6 @@ body, html {
   background: white;
   color: white;
   padding: 10px;
-  -webkit-transform: rotate(-5deg);
   font-size: 0.8em;
   text-align: center;
   font-weight: bold;

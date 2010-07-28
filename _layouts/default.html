@@ -9,28 +9,6 @@
     <link rel="stylesheet" href="/stylesheets/text.css" />
     <link rel="stylesheet" href="/stylesheets/960.css" />
     <link rel="stylesheet" href="/stylesheets/ben.css" />
-
-    <!--link href="/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" /-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        var i = 1000,
-          rotate = function(){
-            var el = $($('div.slide')[i % 3]);
-            
-            el.css({opacity : 0, 'z-index' : i}).show().delay(4000).animate({opacity : 1}, 1000);
-            
-            setTimeout(function(){
-              rotate();
-            }, 5000);
-
-            i++;
-          };
-        
-        rotate();
-      });
-    </script>
-
   </head>
   <body>
     <div class="container_12">
@@ -38,11 +16,9 @@
 
         <div class="heading">
           <h1>
-            <a href="/">Ben <b>Nolan</b></a>
+            <a href="/">Ben Nolan</a>
           </h1>
         </div>
-
-
       </div>
       
       <div class="clear"></div>
@@ -51,87 +27,18 @@
         <span>I like to make software that is <em>fun</em> and <em>good looking</em>.</span>
       </h2>
       
-      <div class="grid_4">
-        
-        <p>
-          These are the tools I use:
-        </p>
-        
-        <ul>
-          <li><a href="http://jquery.com/">jQuery</a>, <a href="http://www.w3.org/TR/html5/">HTML5</a> and <a href="http://www.w3.org/Style/CSS/current-work">CSS3</a></li>
-          <li><a href="http://nodejs.org/">node.js</a> and <a href="http://rubyonrails.org/">Ruby on Rails</a></li>
-          <li><a href="http://www.mongodb.org/">MongoDB</a> or <a href="http://www.postgresql.org/">PostgreSQL</a></li>
-        </ul>
-
-        <p>
-          Some of my clients:
-        </p>
-        
-        <ul>
-          <li><a href="http://www.lonelyplanet.com/">Lonely Planet</a></li>
-          <li><a href="http://www.copenhagen.dk/dk/">Copenhagen Museum</a></li>
-          <li><a href="http://www.sony.net/Fun/design/profile/globallocations/losangeles.html">Sony Los Angeles</a></li>
-          <li><a href="http://www.autoscout24.de/">Autoscout 24 Munich</a></li>
-        </ul>
-
-        <p>
-          <img src="/images/37-suitcase.png" width="20" style="position: relative; top: 2px; padding-right: 5px"/> I am available for hire,
-          <a href="mailto:bnolan@gmail.com">email</a> or <a href="callto:bennolan">call me</a>.
-        </p>
-        
-      </div>
-
-      <div class="grid_8">
-        <div class="slideshow">
-          <div class="slide">
-            <img src="/images/slide-hutch.jpg" />
-            <div class="description">
-              <b>Hutch</b> (2010) - a multiplayer browser based game. <b>Node.js</b>, <b>Websockets</b> and <b>HTML5</b>.
-            </div>
-          </div>
-
-          <div class="slide">
-            <img src="/images/slide-matdb.jpg" />
-            <div class="description">
-              <b>Material database</b> (2009) - a library of materials for Indigo Renderer. <b>Rails</b> and <b>jQuery</b>.
-            </div>
-          </div>
-
-          <div class="slide">
-            <img src="/images/slide-whp.jpg" />
-            <div class="description">
-              <b>We Heart Places</b> (2008) - a facebook application for exploring the world. <b>Rails</b>, <b>FBJS</b> and <b>FBML</b>.
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="clear"></div>
-      
-      <div class="gridlinks">
-        <div class="grid_4" style="text-align: right">
-          You can find me online..
-        </div>
-        <div class="grid_2"><a href="http://github.com/bnolan/"><img src="/images/github.png" /> github</a></div>
-        <div class="grid_2"><a href="http://flickr.com/photos/benn"><img src="/images/flickr.png" /> flickr</a></div>
-        <div class="grid_2"><a href="http://twitter.com/bnolan"><img src="/images/twitter.png" /> twitter</a></div>
-        <div class="grid_2"><a href="http://www.facebook.com/bennolan"><img src="/images/facebook.png" /> facebook</a></div>
-
-        <div class="clear"></div>
-      </div>
-
-      <div>
+      <div class="grid_8" style="padding-left: 10px">
         
         {% for post in site.posts limit:5 %}
-          <div class="grid_2 prefix_2">
+          <div class="grid_2">
             <div class="metadate">
-              <b>{{ post.date | date: "%a" }}</b><br />
+              {{ post.date | date: "%a" }}
               {{ post.date | date: "%B %d" }}
               </div>
           </div>
           
-          <div class="grid_6">
-            <h1 class="title"><a href="{{ post.url }}">{{ post.title }}</a></<h1 id=""></h1>
+          <div class="grid_5 post">
+            <h3 class="title"><a href="{{ post.url }}">{{ post.title }}</a></<h1 id=""></h1>
             {{ post.content }}
           </div>
           
@@ -140,6 +47,51 @@
           <div class="clear"></div>
         {% endfor %}
 
+      </div>
+
+      <div class="grid_3 sidebar">
+        
+        <h2>
+          Work with me
+        </h2>
+        
+        <p>
+          <img src="/images/37-suitcase.png" width="20" style="float: left; padding: 0 10px 40px 0"/> I am available for hire,
+          <a href="mailto:bnolan@gmail.com">email</a> or <a href="callto:bennolan">call me</a>.
+        </p>
+
+        <h2>
+          Tools
+        </h2>
+        
+        <ul>
+          <li><a href="http://jquery.com/">jQuery</a>, <a href="http://www.w3.org/TR/html5/">HTML5</a> and <a href="http://www.w3.org/Style/CSS/current-work">CSS3</a></li>
+          <li><a href="http://nodejs.org/">node.js</a> and <a href="http://rubyonrails.org/">Ruby on Rails</a></li>
+          <li><a href="http://www.mongodb.org/">MongoDB</a> or <a href="http://www.postgresql.org/">PostgreSQL</a></li>
+        </ul>
+
+        <h2>
+          Clients
+        </h2>
+        
+        <ul>
+          <li><a href="http://www.lonelyplanet.com/">Lonely Planet</a></li>
+          <li><a href="http://www.copenhagen.dk/dk/">Copenhagen Museum</a></li>
+          <li><a href="http://www.sony.net/Fun/design/profile/globallocations/losangeles.html">Sony Los Angeles</a></li>
+          <li><a href="http://www.autoscout24.de/">Autoscout 24 Munich</a></li>
+        </ul>
+
+        <h2>
+          Find me online
+        </h2>
+        
+        <ul class="findmeonline">
+          <li><a href="http://github.com/bnolan/"><img src="/images/github.png" /> github</a></li>
+          <li><a href="http://flickr.com/photos/benn"><img src="/images/flickr.png" /> flickr</a></li>
+          <li><a href="http://twitter.com/bnolan"><img src="/images/twitter.png" /> twitter</a></li>
+          <li><a href="http://www.facebook.com/bennolan"><img src="/images/facebook.png" /> facebook</a></li>
+        </ul>
+        
       </div>
 
       <div class="push"></div>

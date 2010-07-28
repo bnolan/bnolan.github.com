@@ -1,10 +1,8 @@
+body{
+  line-height: 20px;  
+}
+
 .heading { 
-	background: #FF1168;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FF1168), to(#FF3388)); 
-	position: relative;
-  -webkit-transform: rotate(1deg);
-	-moz-transform: rotate(1deg);
-	top: -10px;
 }
 
 a img{
@@ -26,49 +24,52 @@ a{
 li{
 	margin-bottom: 0.5em;
 }
+.heading{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .heading h1{
 	margin: 0;
 	padding: 50px 0 10px 0
+	line-height: 200px;
+	height: 200px;
+	width: 200px;
+	position: relative;
+	left: -10px;
+	background: black;
+	-webkit-border-radius: 100px;
+	display: block;
 }
 
 .heading h1 a{
 	color: white;
-	background: black;
 	text-decoration: none;
-	font-size: 60px;
-	letter-spacing: -5px;
-	word-spacing: 10px;
-	margin: 0;
-	padding: 0;
-  -webkit-transform: rotate(-2deg);
-	-moz-transform: rotate(-2deg);
+	font-size: 24px;
+	letter-spacing: -1px;
+	position: absolute;
 	border: none;
-	position: relative;
-	left: 10px;
-	display: block;
-	width: 5em;
-	text-align: center;
+	bottom: 40px;
+	right: 30px;
 }
 
 h2.subtitle{
+  position: absolute;
+  top: 130px;
+  left: 210px;
 	margin: 40px 0;
-	font-size: 2em;
-	font-weight: bold;
-	color: #111;
-	letter-spacing: -1px;
+	font-size: 1.2em;
+	font-weight: normal;
+	color: #333;
 	text-align: center;
 }
 
 h2.subtitle em{
-	padding: 10px;
 	font-style: normal;
-	background: #FF1168;
-	color: black;
+	font-weight: bold;
 }
 
 h2.subtitle em:nth-child(2){
-	background: black;
-	color: white;
 }
 
 .gridlinks{
@@ -96,13 +97,6 @@ h2.subtitle em:nth-child(2){
 .gridlinks div:nth-child(odd) a:hover{ background: black; color: white; }
 
 
-.metadate{
-	text-align: center;
-	width: 90px;
-	margin: 0 auto;
-	color: black;
-	background: #FF1168;
-}
 .metadate b{
 	font-size: 1.6em;
 }
@@ -147,4 +141,72 @@ h1.title a{
 	text-shadow: 1px 1px 1px black;
 	color: white;
 	
+}
+
+
+.sidebar h2{
+	font-family: 'helvetica neue', Verdana, Sans-Serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-bottom: 1px dotted #999;
+	color: #333;
+	font-weight: normal;
+	line-height: 28px;
+}
+
+
+.metadate{
+  border-bottom: 3px double #ccc;
+  text-align: center;
+  font-size: 0.8em;
+  color: #777;
+  display: block;
+  line-height: 28px;
+  position: relative;
+  left: 20px;
+}
+
+h3.title{
+  line-height: 28px;
+  border-bottom: 3px double #ccc;
+  background: none;
+  font-size: 1.3em;
+}
+h3.title a{
+  border: none;
+  color: black;
+}
+
+
+
+pre{
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  font-size: 12px;
+  font-family: 'courier new', fixed;
+  line-height: 20px;
+  background: white;
+  padding: 5px;
+  color: #333;
+  background: #eee;
+}
+
+.post h2, .post h1{
+  font-size: 1.2em;
+  color: #333;
+  line-height: 25px;
+  margin-bottom: 15px;
+  
+}
+
+.findmeonline li{
+  position: relative;
+}
+.findmeonline img{
+  position: absolute;
+  left: -22px;
+  width: 18px;
 }

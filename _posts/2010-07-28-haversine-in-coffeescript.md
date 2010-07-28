@@ -4,9 +4,6 @@ Remember that lat/longs are actually spherical coordinates expressed in degrees.
 
 This [page](http://kapelica.hr/kw/latlong.html) at kapelica.hr contained a great implementation of the haversine formula in javascript, I tidied it up and ported it to coffeescript to measure distances to the nearest places in my iphone app.
 
-    #
-    # From http://kapelica.hr/kw/latlong.html
-    #
     Radians: (degrees) ->
       degrees /  57.2957795
   
