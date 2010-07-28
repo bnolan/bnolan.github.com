@@ -2,6 +2,9 @@ body{
   line-height: 20px;  
 }
 
+.container_12{
+position: relative;
+}
 .heading { 
 }
 
@@ -58,8 +61,8 @@ li{
 
 h2.subtitle{
   position: absolute;
-  top: 130px;
-  left: 210px;
+  top: 100px;
+  left: 190px;
 	line-height: 20px;
 	margin: 40px 0;
 	font-size: 1.2em;
