@@ -1,3 +1,8 @@
+---
+layout: post
+title: Merging identities
+---
+
 Regular spring cleaning is the key to a clean workspace, and so it is with your internet identity.
 
 In preparation for launching [Hutch](http://playhutch.com/) and getting back to into consulting, I've been merging my sites on the net...

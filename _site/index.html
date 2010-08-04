@@ -14,7 +14,7 @@
     <div class="container_12">
       <div id="header" class="basic">
 
-        <div class="heading">
+        <div class="heading" onclick="window.location='/'">
           <h1>
             <a href="/">Ben Nolan</a>
           </h1>
@@ -66,7 +66,7 @@
           </div>
           
           <div class="grid_5 post">
-            <h3 class="title"><a href="/2010/07/29/number-of-cities-in-the-world.html">Number Of Cities In The World</a></<h1 id=""></h1>
+            <h3 class="title"><a href="/2010/07/29/number-of-cities-in-the-world.html">Cities in the world..</a></<h1 id=""></h1>
               <div class="postcontent preview">
                 <p>When you&#8217;re building an application for travellers, you come up against the problem of how do you get enough data in the system so that it&#8217;s useful for 455 cities with a population of more than one million people, 1054 with more than 500,000 and 2851 with more than 150,000 people.</p>
 
@@ -74,11 +74,19 @@
 
 <h1 id='most_visited_cities'>Most visited cities</h1>
 
-<p>This <a href='http://en.wikipedia.org/wiki/Tourism#Most_visited_cities'>table</a> at Wikipedia shows the top <b>10 most visited</b> cities to be <i>Paris, London, Bangkok, Singapore, Kuala Lumpur, New York City, Dubai, Istanbul, Hong Kong, Shanghai</i>. If KL, Dubai and HK seem a surprising inclusion - I guess it&#8217;s because your an anglophile like me, and forget that people from Asia and the Middle East use jumbo jets too.</p>
+<p>This <a href='http://en.wikipedia.org/wiki/Tourism#Most_visited_cities'>table</a> at Wikipedia shows the top <b>10 most visited</b> cities to be <i>Paris, London, Bangkok, Singapore, Kuala Lumpur, New York City, Dubai, Istanbul, Hong Kong, Shanghai</i>.</p>
+
+<h1 id='crawling_data_for_these_cities'>Crawling data for these cities</h1>
+
+<p>I&#8217;m not sure what the take away from this data is. Seeding 2851 cities with data seems very doable in a week of crawling, seeding the top 10 visited cities with deep data is also achievable - it&#8217;d be interesting to compare the list of top 2851 cities with the hometowns of the users of <a href='http://www.weheartplaces.com/'>weheartplaces</a>.</p>
+
+<h1 id='the_real_take_away'>The real take away</h1>
+
+<p>Is that it&#8217;s better to encourage users to add content to &#8216;empty&#8217; cities, than to expect to have every city to have a persuasive dataset when you launch your travel site.</p>
               </div>
           </div>
           
-          <!--div class="comment-link"><a href="/2010/07/29/number-of-cities-in-the-world.html#disqus_thread">Number Of Cities In The World</a></div-->
+          <!--div class="comment-link"><a href="/2010/07/29/number-of-cities-in-the-world.html#disqus_thread">Cities in the world..</a></div-->
           
           <div class="clear"></div>
         
@@ -90,7 +98,7 @@
           </div>
           
           <div class="grid_5 post">
-            <h3 class="title"><a href="/2010/07/28/haversine-in-coffeescript.html">Haversine In Coffeescript</a></<h1 id=""></h1>
+            <h3 class="title"><a href="/2010/07/28/haversine-in-coffeescript.html">Haversine in Coffeescript</a></<h1 id=""></h1>
               <div class="postcontent preview">
                 <p>The <a href='http://en.wikipedia.org/wiki/Haversine_formula'>Haversine formula</a> is a equation that can be used to calculate the straight line distance between two coordinates on a sphere. It is commonly used by geohackers to work out how far in <em>kilometres</em> it is between two latitude/latitude coordinates.</p>
 
@@ -113,7 +121,7 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
               </div>
           </div>
           
-          <!--div class="comment-link"><a href="/2010/07/28/haversine-in-coffeescript.html#disqus_thread">Haversine In Coffeescript</a></div-->
+          <!--div class="comment-link"><a href="/2010/07/28/haversine-in-coffeescript.html#disqus_thread">Haversine in Coffeescript</a></div-->
           
           <div class="clear"></div>
         
@@ -125,7 +133,7 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
           </div>
           
           <div class="grid_5 post">
-            <h3 class="title"><a href="/2010/07/28/display-only-the-first-paragraph.html">Display Only The First Paragraph</a></<h1 id=""></h1>
+            <h3 class="title"><a href="/2010/07/28/display-only-the-first-paragraph.html">Displaying only the first paragraph</a></<h1 id=""></h1>
               <div class="postcontent preview">
                 <p>In redesigning my blog and publishing it on github pages, I wanted a simple way to show only the first paragraph of each post on the front page. The way I did it isn&#8217;t something I&#8217;m proud of - but it does show the power of css.</p>
 
@@ -139,7 +147,7 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
               </div>
           </div>
           
-          <!--div class="comment-link"><a href="/2010/07/28/display-only-the-first-paragraph.html#disqus_thread">Display Only The First Paragraph</a></div-->
+          <!--div class="comment-link"><a href="/2010/07/28/display-only-the-first-paragraph.html#disqus_thread">Displaying only the first paragraph</a></div-->
           
           <div class="clear"></div>
         
@@ -151,7 +159,7 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
           </div>
           
           <div class="grid_5 post">
-            <h3 class="title"><a href="/2010/07/23/offline-manifests.html">Offline Manifests</a></<h1 id=""></h1>
+            <h3 class="title"><a href="/2010/07/23/offline-manifests.html">Offline manifests</a></<h1 id=""></h1>
               <div class="postcontent preview">
                 <p>I&#8217;ve been working on an html5 app for Lonely Planet, and part of the task is to make the app work offline on the iPhone. Getting it to work isn&#8217;t too hard - you need to create a <a href='http://diveintohtml5.org/offline.html'>cache.manifest</a> file and make sure it is served with the correct mime type.</p>
 
@@ -185,7 +193,7 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
               </div>
           </div>
           
-          <!--div class="comment-link"><a href="/2010/07/23/offline-manifests.html#disqus_thread">Offline Manifests</a></div-->
+          <!--div class="comment-link"><a href="/2010/07/23/offline-manifests.html#disqus_thread">Offline manifests</a></div-->
           
           <div class="clear"></div>
         
@@ -209,7 +217,7 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
         
         <ul>
           <li><a href="http://jquery.com/">jQuery</a>, <a href="http://www.w3.org/TR/html5/">HTML5</a> and <a href="http://www.w3.org/Style/CSS/current-work">CSS3</a></li>
-          <li><a href="http://nodejs.org/">node.js</a> and <a href="http://rubyonrails.org/">Ruby on Rails</a></li>
+          <li><a href="http://nodejs.org/">node.js</a> or <a href="http://rubyonrails.org/">Ruby on Rails</a></li>
           <li><a href="http://www.mongodb.org/">MongoDB</a> or <a href="http://www.postgresql.org/">PostgreSQL</a></li>
         </ul>
 
@@ -219,9 +227,14 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
         
         <ul>
           <li><a href="http://www.lonelyplanet.com/">Lonely Planet</a></li>
-          <li><a href="http://www.copenhagen.dk/dk/">Copenhagen Museum</a></li>
           <li><a href="http://www.sony.net/Fun/design/profile/globallocations/losangeles.html">Sony Los Angeles</a></li>
+          <li><a href="http://www.copenhagen.dk/dk/">Copenhagen Museum</a></li>
+          <li><a href="http://www.nz.com/">New Zealand Exchange</a></li>
           <li><a href="http://www.autoscout24.de/">Autoscout 24 Munich</a></li>
+          <li><a href="http://www.koziarski.com/">Koziarski Software</a></li>
+          <li><a href="http://www.traveliq.net/">Travel IQ</a></li>
+          <li><a href="http://www.zoomin.co.nz/">Zoomin</a></li>
+          <li><a href="http://www.sxip.com/">Sxip</a></li>
         </ul>
 
         <h2>

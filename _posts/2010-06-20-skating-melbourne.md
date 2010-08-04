@@ -1,3 +1,8 @@
+---
+layout: post
+title: Skating in Melbourne
+---
+
 I just went on a big skate of melbourne CBD.
 
 I started at home (nähe Southern Cross Station), then skated out to Prudence in West Melbourne. Prudence is a highly recommended bar. The beer is expensive, but the cocktails apparently are affordable. From Souther Cross to Prudence is mostly uphill, which meant that after a few beers, a few conversations and a good laugh - it was all downhill to Section 8.

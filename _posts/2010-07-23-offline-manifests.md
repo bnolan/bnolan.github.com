@@ -1,3 +1,8 @@
+---
+layout: post
+title: Offline manifests
+---
+
 I've been working on an html5 app for Lonely Planet, and part of the task is to make the app work offline on the iPhone. Getting it to work isn't too hard - you need to create a [cache.manifest](http://diveintohtml5.org/offline.html) file and make sure it is served with the correct mime type.
 
 ## The problem is online

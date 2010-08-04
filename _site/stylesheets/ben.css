@@ -8,12 +8,16 @@ position: relative;
 .heading { 
 }
 
+#header{
+  cursor: pointer;
+}
+
 a img{
 	border: none;
 }
 a:hover{
-	background: black;
-	color: white;
+	background: black !important;
+	color: white !important;
 	-webkit-transition: color 0.2s linear; 
 	-webkit-transition-property: color,background,padding,left;
 }

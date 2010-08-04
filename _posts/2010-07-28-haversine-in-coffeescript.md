@@ -1,3 +1,8 @@
+---
+layout: post
+title: Haversine in Coffeescript
+---
+
 The [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) is a equation that can be used to calculate the straight line distance between two coordinates on a sphere. It is commonly used by geohackers to work out how far in *kilometres* it is between two latitude/latitude coordinates.
 
 Remember that lat/longs are actually spherical coordinates expressed in degrees.
