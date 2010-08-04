@@ -8,7 +8,7 @@ position: relative;
 .heading { 
 }
 
-#header{
+.heading{
   cursor: pointer;
 }
 
@@ -43,7 +43,7 @@ li{
 	height: 200px;
 	width: 200px;
 	position: relative;
-	left: -30px;
+	left: -20px;
 	background: black;
 	-webkit-border-radius: 100px;
 	border-radius: 100px;
