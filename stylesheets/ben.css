@@ -79,12 +79,34 @@ h2.subtitle em{
 h2.subtitle em:nth-child(2){
 }
 
-.postcontent p:nth-child(1):after{
+.preview.postcontent p:nth-child(1):after{
   content: "..";
 }
 
-.postcontent>* + *{
+.preview.postcontent>* + *{
   display: none;
+}
+
+.postcontent img{
+  margin: 5px 0 30px 20px;
+  border: 1px solid #eee;
+  background: white;
+  padding: 10px;
+  -webkit-box-shadow: 2px 2px 7px rgba(0,0,0,0.2);
+  max-width: 350px;
+}
+
+.postcontent cite{
+  display: block;
+  color: #777;
+  font-size: 0.85em;
+  margin-left: 22px;
+  font-style: normal;
+}
+
+.postcontent img + cite{
+  position: relative;
+  top: -20px;
 }
 
 .gridlinks{
