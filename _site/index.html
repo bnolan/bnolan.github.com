@@ -32,6 +32,30 @@
         
           <div class="grid_2">
             <div class="metadate">
+              Thu
+              August 05
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/08/05/design.html">Design features</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>While redesigning this blog (I love being able to edit css and template as easily as blog posts, <a href='http://pages.github.com/'>go github pages</a>!), I found myself turning this:</p>
+<img src='/images/design-staccato.png' /><cite>Ordered chronologically</cite>
+<p>Into this:</p>
+<img src='/images/design-wave.png' /><cite>Ordered by aesthetic</cite>
+<p>I find the wave a lot more pleasing to the eye, and I still kept the primary order mostly intact. This is one of my design tenets - lay out the page by weight and balance, then work out what text you can fit into each of the boxes.</p>
+
+<p>It&#8217;s almost the opposite of how <a href='http://37signals.com/papers/introtopatterns//index'>the signals</a> do design, but I love it.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/08/05/design.html#disqus_thread">Design features</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
               Wed
               August 04
               </div>
@@ -148,52 +172,6 @@ Haversine: (lat1, lon1, lat2, lon2) -&gt;
           </div>
           
           <!--div class="comment-link"><a href="/2010/07/28/display-only-the-first-paragraph.html#disqus_thread">Displaying only the first paragraph</a></div-->
-          
-          <div class="clear"></div>
-        
-          <div class="grid_2">
-            <div class="metadate">
-              Fri
-              July 23
-              </div>
-          </div>
-          
-          <div class="grid_5 post">
-            <h3 class="title"><a href="/2010/07/23/offline-manifests.html">Offline manifests</a></<h1 id=""></h1>
-              <div class="postcontent preview">
-                <p>I&#8217;ve been working on an html5 app for Lonely Planet, and part of the task is to make the app work offline on the iPhone. Getting it to work isn&#8217;t too hard - you need to create a <a href='http://diveintohtml5.org/offline.html'>cache.manifest</a> file and make sure it is served with the correct mime type.</p>
-
-<h2 id='the_problem_is_online'>The problem is online</h2>
-
-<p>When you have the phone offline and load the app, it loads in 2 seconds. When you turn the phone online again, it takes about 30 seconds to load all the javascript and so on.</p>
-
-<h2 id='its_the_caching_rules'>It&#8217;s the caching rules</h2>
-
-<p>We have been deploying to google app engine, and by default - app engine sets all files to expire after 10 minutes. So even though the iphone has a local copy of the files, every 10 minutes, it&#8217;ll expire the local cache and redownload everything that the manifest refers too.</p>
-
-<h2 id='a_checklist_for_fast_online_iphone_apps'>A checklist for fast online iphone apps</h2>
-
-<ol>
-<li>Use a manifest</li>
-
-<li>Ensure the manifest is served with the mimetype text/cache-manifest</li>
-
-<li>Ensure the manifest has no 404 errors in it</li>
-
-<li>Ensure the manifest and all the content in it has an expiry date in the distant future</li>
-
-<li>White-list your network resources explicitly in the manifest</li>
-
-<li>Use jqt.offline.js to help debug the browser behaviour</li>
-
-<li>Tail your webserver logs and keep an eagle eye for unnecessary requests</li>
-</ol>
-
-<p>All going well, your html5 app will load instantly, and still be able to access network resources.</p>
-              </div>
-          </div>
-          
-          <!--div class="comment-link"><a href="/2010/07/23/offline-manifests.html#disqus_thread">Offline manifests</a></div-->
           
           <div class="clear"></div>
         
