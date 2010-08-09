@@ -32,6 +32,34 @@
         
           <div class="grid_2">
             <div class="metadate">
+              Mon
+              August 09
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/08/09/coffeescript-0.9.html">CoffeeScript 0.9</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p><a href='http://jashkenas.github.com/coffee-script/'>CoffeeScript 0.9</a> was released over the weekend. CoffeeScript is a compiler that turns .coffee files into .js files. CoffeeScript is a significant whitespace, rubyish language that makes large (and small) javascript projects much more manageable and fun.</p>
+
+<p>I&#8217;ve been using CoffeeScript since 0.5, first with a multiplayer javascript game experiment, then more recently as part of my consulting with <a href='http://lplabs.com/'>Lonely Planet Labs</a>. It&#8217;s been interesting working with multiple developers on CoffeeScript - and seeing how it works in a production environment. I can heartily recommend it to teams that are looking to ease their javascript development.</p>
+
+<ol>
+<li>9 is a big change from 0.7.2, read <a href='http://github.com/jashkenas/coffee-script/issues/closed#issue/541'>this ticket</a> for some of the background on the change. My own reaction to the change is interesting - I was against the change at first, and only changed my mind after 0.9 was released. I was impressed by how <a href='http://github.com/jashkenas/'>Jeremy</a> got opininions and analysis from all the existing users, then quickly made such a fundamental change to the language, let people try it out in a branch - and finally decided to merge it back into stable.</li>
+</ol>
+
+<p>All this - despite the fact that upgrading most coffeescript apps to 0.9 is non-trivial. Changing the symbol used for assignment will probably break most existing code. The assignment change was required to bring in yamlish object assignment which is awesome. The new release also has a host of other, non contentious improvements, around superclasses.</p>
+
+<p>I think it&#8217;s a good reminder, that no matter how substantial a change - if you manage is right, and the benefits outweigh the costs, your community will adapt and embrace the new version.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/08/09/coffeescript-0.9.html#disqus_thread">CoffeeScript 0.9</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
               Sun
               August 08
               </div>
@@ -169,6 +197,195 @@
           
           <div class="clear"></div>
         
+          <div class="grid_2">
+            <div class="metadate">
+              Wed
+              July 28
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/07/28/haversine-in-coffeescript.html">Haversine in Coffeescript</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>The <a href='http://en.wikipedia.org/wiki/Haversine_formula'>Haversine formula</a> is a equation that can be used to calculate the straight line distance between two coordinates on a sphere. It is commonly used by geohackers to work out how far in <em>kilometres</em> it is between two latitude/latitude coordinates.</p>
+
+<p>Remember that lat/longs are actually spherical coordinates expressed in degrees.</p>
+
+<p>This <a href='http://kapelica.hr/kw/latlong.html'>page</a> at kapelica.hr contained a great implementation of the haversine formula in javascript, I tidied it up and ported it to coffeescript to measure distances to the nearest places in my iphone app.</p>
+
+<pre><code>Radians: (degrees) -&gt;
+  degrees /  57.2957795
+
+Haversine: (lat1, lon1, lat2, lon2) -&gt;
+  R = 6371 # km
+  dLat: Radians(lat2-lat1)
+  dLon: Radians(lon2-lon1)
+  a: Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(Radians(lat1)) * Math.cos(Radians(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2)
+  c: 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+  R * c</code></pre>
+
+<p>Note that the degrees-&gt;radians conversion isn&#8217;t exact, but the results should be within the margin of error for most GPS positioning systems.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/07/28/haversine-in-coffeescript.html#disqus_thread">Haversine in Coffeescript</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
+              Wed
+              July 28
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/07/28/display-only-the-first-paragraph.html">Displaying only the first paragraph</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>In redesigning my blog and publishing it on github pages, I wanted a simple way to show only the first paragraph of each post on the front page. The way I did it isn&#8217;t something I&#8217;m proud of - but it does show the power of css.</p>
+
+<p>The following rule hides everything apart from the first child of a div.</p>
+
+<pre><code>div &gt; * + *{
+  display: none;
+}</code></pre>
+
+<p>It works on safari, firefox and will work on ie9.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/07/28/display-only-the-first-paragraph.html#disqus_thread">Displaying only the first paragraph</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
+              Fri
+              July 23
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/07/23/offline-manifests.html">Offline manifests</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>I&#8217;ve been working on an html5 app for Lonely Planet, and part of the task is to make the app work offline on the iPhone. Getting it to work isn&#8217;t too hard - you need to create a <a href='http://diveintohtml5.org/offline.html'>cache.manifest</a> file and make sure it is served with the correct mime type.</p>
+
+<h2 id='the_problem_is_online'>The problem is online</h2>
+
+<p>When you have the phone offline and load the app, it loads in 2 seconds. When you turn the phone online again, it takes about 30 seconds to load all the javascript and so on.</p>
+
+<h2 id='its_the_caching_rules'>It&#8217;s the caching rules</h2>
+
+<p>We have been deploying to google app engine, and by default - app engine sets all files to expire after 10 minutes. So even though the iphone has a local copy of the files, every 10 minutes, it&#8217;ll expire the local cache and redownload everything that the manifest refers too.</p>
+
+<h2 id='a_checklist_for_fast_online_iphone_apps'>A checklist for fast online iphone apps</h2>
+
+<ol>
+<li>Use a manifest</li>
+
+<li>Ensure the manifest is served with the mimetype text/cache-manifest</li>
+
+<li>Ensure the manifest has no 404 errors in it</li>
+
+<li>Ensure the manifest and all the content in it has an expiry date in the distant future</li>
+
+<li>White-list your network resources explicitly in the manifest</li>
+
+<li>Use jqt.offline.js to help debug the browser behaviour</li>
+
+<li>Tail your webserver logs and keep an eagle eye for unnecessary requests</li>
+</ol>
+
+<p>All going well, your html5 app will load instantly, and still be able to access network resources.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/07/23/offline-manifests.html#disqus_thread">Offline manifests</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
+              Mon
+              July 05
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/07/05/coffeescript.html">Coffeescript</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>I&#8217;ve been doing a lot of coffeescript lately and can recommend it wholeheartedly.</p>
+
+<p>That is all.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/07/05/coffeescript.html#disqus_thread">Coffeescript</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
+              Sun
+              June 20
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/06/20/skating-melbourne.html">Skating in Melbourne</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>I just went on a big skate of melbourne CBD.</p>
+
+<p>I started at home (nähe Southern Cross Station), then skated out to Prudence in West Melbourne. Prudence is a highly recommended bar. The beer is expensive, but the cocktails apparently are affordable. From Souther Cross to Prudence is mostly uphill, which meant that after a few beers, a few conversations and a good laugh - it was all downhill to Section 8.</p>
+
+<p>Section 8 is a very cool bar. During the day. I went there in the evening and wasn&#8217;t so impressed. The skate was good though - it&#8217;s mostly downhill from Prudence along Victoria Street - then turn right, drop down into town (it&#8217;s a pretty steep skate through traffic down to little collins street) - and a hard left into Section 8.</p>
+
+<p>S8 only had one beer I wanted - and it was in what australians call a &#8220;tallie&#8221; (800ml beer). I took a few drinks - decided S8 wasn&#8217;t for me, then stashed the beer in my back pocket and headed through town. There were people everywhere (and you can&#8217;t drink in public anywhere in Australia) so it took 5/10 minutes before I got out of the city (skating past the Melbourne Cricket Ground by now) and could drink the rest of my beer. It was a lovely long skate past the MCG - down a shallow smooth slope on a path surrounded in trees and grass. Had some good tunes on - nice times.</p>
+
+<p>Then I bombed from the MCG down to Richmond - eyeballed out the gig I was going to go see at the corner bar, decided it wasn&#8217;t worth $50 to go see - then caught a tram back to Southern Cross and mellowed along Spencer street to home.</p>
+
+<p>Melbourne. Good for skating.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/06/20/skating-melbourne.html#disqus_thread">Skating in Melbourne</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
+              Mon
+              May 24
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/05/24/merging-identities.html">Merging identities</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>Regular spring cleaning is the key to a clean workspace, and so it is with your internet identity.</p>
+
+<p>In preparation for launching <a href='http://playhutch.com/'>Hutch</a> and getting back to into consulting, I&#8217;ve been merging my sites on the net&#8230;</p>
+
+<ul>
+<li>Nolan Consulting - my consulting business</li>
+
+<li>Ben Nolan - my personal page</li>
+</ul>
+
+<h3 id='purpose'>Purpose</h3>
+
+<p>My goal was to make a better profile for my self and make something that is updated more frequently (instead of random little updates on many different sites).</p>
+
+<h3 id='technologies'>Technologies</h3>
+
+<p>I&#8217;ve been a git convert for a while, and part of my interest</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/05/24/merging-identities.html#disqus_thread">Merging identities</a></div-->
+          
+          <div class="clear"></div>
+        
 
       </div>
 
@@ -214,6 +431,8 @@
         </h2>
         
         <ul class="findmeonline">
+          <li><a href="/atom.xml"><img src="/images/rss.png" /> atom feed</a></li>
+          <li><a href="http://delicious.com/benn/"><img src="/images/delicious.png" /> delicious</a></li>
           <li><a href="http://github.com/bnolan/"><img src="/images/github.png" /> github</a></li>
           <li><a href="http://flickr.com/photos/benn"><img src="/images/flickr.png" /> flickr</a></li>
           <li><a href="http://twitter.com/bnolan"><img src="/images/twitter.png" /> twitter</a></li>

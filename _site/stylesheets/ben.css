@@ -246,6 +246,7 @@ pre{
 
 .findmeonline li{
   position: relative;
+  list-style: none;
 }
 .findmeonline img{
   position: absolute;
