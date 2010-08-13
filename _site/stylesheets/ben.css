@@ -10,7 +10,6 @@ position: relative;
 }
 
 .heading{
-  cursor: pointer;
 }
 
 a img{
@@ -38,6 +37,7 @@ li{
 }
 
 .heading h1{
+  cursor: pointer;
 	margin: 0;
 	padding: 50px 0 10px 0
 	line-height: 200px;

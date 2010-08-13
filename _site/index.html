@@ -15,8 +15,8 @@
     <div class="container_12">
       <div id="header" class="basic">
 
-        <div class="heading" onclick="window.location='/'">
-          <h1>
+        <div class="heading">
+          <h1 onclick="window.location='/'">
             <a href="/">Ben Nolan</a>
           </h1>
         </div>
@@ -30,6 +30,44 @@
       
       <div class="grid_8">
         
+        
+          <div class="grid_2">
+            <div class="metadate">
+              Fri
+              August 13
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/08/13/pushstate-and-nodejs.html">Push state and Node.js</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>I&#8217;ve talked with <a href='http://twitter.com/sminnee'>Sam Minnee</a> (CTO at <a href='http://silverstripe.com/'>Silverstripe</a>) a bunch of times about running jquery on the server side. It was only a hunch, I never knew exactly what the benefits would be - but with the availability of <a href='https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history'>pushState</a> on Firefox, Safari and Chrome - it suddenly makes a lot of sense.</p>
+
+<p>What pushState and jquery on the server lets you do - is to have a pure javascript application that doesnt require page reloads to go to different urls. For example:</p>
+
+<ol>
+<li>http://yourapp.com/</li>
+
+<li>http://yourapp.com/search</li>
+
+<li>http://yourapp.com/search/myterms</li>
+
+<li>http://yourapp.com/tweet/12345</li>
+</ol>
+
+<p>Can all be generated client side by your jquery and coffeescript code. This is an awesome way to write an app, you get a good responsive app and it&#8217;s easy to persist state between pages (eg your google map won&#8217;t spring back to the default location everytime you click &#8216;back&#8217;).</p>
+
+<p>The number one downfall of javascript apps, is that there are now pages in your app that can&#8217;t be linked to - nor can they be crawled by google, or scraped by any other site that uses the http protocol. Building exciting new apps that &#8216;break the internet&#8217; isn&#8217;t cool.</p>
+
+<p>But if you can run your entire app on the server side - then if someone goes to <code>http://yourapp.com/search/myterms</code> - node.js can load your page on the server, recognize the url, run the correct javascript code to update the state as the browser would - then send it down the wire. So that non-javascript clients can access the same content that a desktop browser can.</p>
+
+<p>It&#8217;s a whole new way to do accessibility.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/08/13/pushstate-and-nodejs.html#disqus_thread">Push state and Node.js</a></div-->
+          
+          <div class="clear"></div>
         
           <div class="grid_2">
             <div class="metadate">
