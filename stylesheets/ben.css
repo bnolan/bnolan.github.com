@@ -98,7 +98,7 @@ h2.subtitle em:nth-child(2){
   background: white;
   padding: 10px;
   -webkit-box-shadow: 2px 2px 7px rgba(0,0,0,0.2);
-  max-width: 350px;
+  max-width: 310px;
 }
 
 .postcontent cite{
