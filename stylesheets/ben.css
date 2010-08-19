@@ -254,3 +254,39 @@ pre{
   width: 18px;
 }
 
+/*
+ * Disqusting
+ */
+ 
+#disqus_thread{
+  margin-top: 40px;
+}
+
+#disqus_thread h3{
+  font-size: 1.2em !important;
+  color: #333 !important;
+  line-height: 25px !important;
+  margin-bottom: 15px !important;
+}
+
+#dsq-global-toolbar{
+  display: none !important;
+}
+
+.dsq-request-user-stats{
+  line-height: 25px;
+}
+
+.dsq-request-user-stats *{
+  color: #ccc !important;
+  font-weight: normal !important;
+  font-size: 11px !important;
+}
+
+.dsq-request-user-name small{
+  display: none;
+}
+
+.dsq-options{
+  display: none !important;
+}
