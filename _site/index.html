@@ -33,6 +33,70 @@
         
           <div class="grid_2">
             <div class="metadate">
+              Thu
+              August 26
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/08/26/under-10240-bytes.html">All done - in under 10240 bytes</a></<h1 id=""></h1>
+              <div class="postcontent preview">
+                <p>Well, it&#8217;s done. I just submitted my entry to the <a href='http://10k.aneventapart.com/'>10k apart</a> competition. It&#8217;s been a pretty intense 24 hours, but I&#8217;m glad I gave myself some extra time this morning to polish up my entry.</p>
+
+<p>You can try the official build of the app - all 9766 bytes of it - at <a href='http://weheartplaces.com/submission/'>weheartplaces.com/submission/</a>.</p>
+
+<h2 id='toolchain'>Toolchain</h2>
+
+<p>I built the app using:</p>
+
+<ul>
+<li><a href='http://jashkenas.github.com/coffee-script/'>Coffeescript</a></li>
+
+<li><a href='http://lesscss.org/'>Less CSS</a></li>
+
+<li><a href='http://api.jquery.com/'>jQuery</a></li>
+
+<li><a href='http://diveintohtml5.org/'>HTML5</a></li>
+
+<li><a href='http://pdfcrowd.com/'>PDFCrowd</a></li>
+
+<li><a href='http://code.google.com/apis/maps/documentation/staticmaps/'>Google Static Maps</a></li>
+
+<li><a href='http://developer.yahoo.com/yui/compressor/'>YUI Compressor</a></li>
+
+<li><a href='http://code.google.com/closure/'>Google closure</a></li>
+</ul>
+
+<p>I have some extra code that is commented out, that does an autocomplete from Wikipedia when you add a new destination to your trip. So for example, you could type &#8216;Montmar&#8217; and get an autocomplete for Montmartre. It&#8217;s nice because <span>a</span> I&#8217;m not very good at french spelling and <span>b</span> you automatically get some description text of the place from Wikipedia.</p>
+
+<p>I also removed a column on the left that let you organise trips to different cities. I probably would&#8217;ve been pushing the 10k limit had I kept adding features, but mainly I didn&#8217;t have time to build and test the features properly. I enjoyed having time today to add some extra destinations to the trip, change the dates a little, and test the app thoroughly on each of the browsers.</p>
+
+<h2 id='compression'>Compression</h2>
+
+<p>I&#8217;d like to thank <a href='http://blog.nihilogic.dk/2008/05/compression-using-canvas-and-png.html'>Nihilogic</a> for their awesome canvas compression technique. Because I could compress the javascript and css so effectively, I didn&#8217;t have to muck around pruning bytes from my css and javascript, which meant I could spend more time polishing the app.</p>
+
+<p>For reference - here&#8217;s the breakdown of the sizes of my CSS at different stages of my development pipeline. I used a simple bash script to compile, compress and package everything.</p>
+
+<pre><code>|              | Source | Comp  | Opt  | PNG  |
+| Less CSS     | 7143   | 7589  | 5961 | 1898 |
+| Coffeescript | 11388  | 13742 | 9445 | 3879 |</code></pre>
+
+<h2 id='internet_explorer_9'>Internet Explorer 9</h2>
+
+<p>It&#8217;s been an interesting experience using IE 9. It looks like it&#8217;s going to be a good browser. I will still use Safari as my main browser and development tool (even if they did release IE9 for mac), but it looks like I&#8217;ll be supporting Safari 5, Chrome, Firefox 3.5 and IE 9 in all my future web apps.</p>
+
+<h2 id='thanks'>Thanks</h2>
+
+<p>I&#8217;d like to thank @sminnee, @ristari, @nzkoz, @clarketus, @nikwakelin, @agrath, @terrcin, @lancehodges, @youdoham, @nazdrug and @campbell for their support, feedback and bug checking while I put this thing together. I couldn&#8217;t have got it done without you all, thanks.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/08/26/under-10240-bytes.html#disqus_thread">All done - in under 10240 bytes</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
               Tue
               August 24
               </div>
