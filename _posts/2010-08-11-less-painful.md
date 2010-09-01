@@ -11,7 +11,8 @@ It recompiles your scripts everytime you make a change, which is perfect, and it
 
 However - every time you get a syntax error, it also blocks the terminal that you launched less from, and you have to go to that terminal and 'Press \[return\] to continue...'. It's pretty annoying. The solution is to load up `/Library/Ruby/Gems/1.8/gems/less-1.2.21/` in your text editor, search for command.rb, and change the `run!` method, to disable the `$stdin.gets` and replace it as so:
 
-    if File.stat( @source ).mtime > File.stat( @destination ).mtime
+    # File has changed
+    if (not File.exists?( @destination )) or File.stat( @source ).mtime > File.stat( @destination ).mtime
       print Time.now.strftime("%H:%M:%S -- ") if @options[:timestamps]
       print "Change detected... "
 
@@ -21,5 +22,9 @@ However - every time you get a syntax error, it also blocks the terminal that yo
         `touch #{@destination}`
       end
     end
+
+I also set the growl.priority to 1 in `err(...)` to make my notifications show up in red.
+
+    growl.priority = 1
 
 You then get growl notifications on error, but simply correct the error and hit save again to recompile. No more hunting to find the right terminal.
