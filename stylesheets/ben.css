@@ -101,6 +101,18 @@ h2.subtitle em:nth-child(2){
   max-width: 310px;
 }
 
+.postcontent audio{
+  margin: 5px 0 20px 30px;
+  border: 1px solid #ddd;
+  background: white;
+  width: 300px;
+}
+
+.postcontent audio + cite{
+  position: relative;
+  top: -10px;
+}
+
 .postcontent cite{
   display: block;
   color: #555;
