@@ -41,7 +41,9 @@
           <div class="grid_5 post">
             <h3 class="title"><a href="/2010/09/06/plotting-choropleths-with-r.html">Plotting Choropleths with r</a></h3>
               <div class="postcontent preview">
-                <p>http://blog.revolutionanalytics.com/2009/11/choropleth-challenge-result.html</p>
+                <p>Choropleths are those <a href='http://flowingdata.com/2009/11/12/how-to-make-a-us-county-thematic-map-using-free-tools/'>heatmap style</a> maps you often see. I&#8217;ve been keen to render some heatmaps out of the <a href='http://twitterplaces.com'>twitterplaces</a> data I have, so I spent today learning R and using it to generate some graphs.</p>
+
+<p>First up - I installed R using the os x binaries, then went right on to install rgdal.</p>
 
 <h2 id='installing_rgdal_on_snow_leopard'>Installing rgdal on snow leopard</h2>
 
@@ -167,9 +169,13 @@ persp(
   ltheta=-30
 )</code></pre>
 <img src='/images/choropleth/sfo-persp.png' /><cite>User count in San Francisco rendered in a perspective view</cite>
+<p>The mission / cbd is in the top right of this graph, so you can see where most people are during the day.</p>
+
 <h2 id='animating_the_graph_over_time'>Animating the graph over time</h2>
 
-<p>This is rendering 5 hours of data on one graph, but I was interested to see how the activity looked on an hourly basis, so I wrote a little R script to re-render the graph for each hour of the day, which will be a topic for tomorrows blog post.</p>
+<p>This is rendering 5 hours of data on one graph, but I was interested to see how the activity looked on an hourly basis, so I wrote a little R script to re-render the graph for each hour of the day, which may be a topic for tomorrows blog post.</p>
+
+<p>nb: Note that I never actually created realistic looking choropleths in this post. ;D</p>
               </div>
           </div>
           

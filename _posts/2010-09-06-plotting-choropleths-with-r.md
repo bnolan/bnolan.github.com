@@ -3,9 +3,9 @@ layout: post
 title: Plotting Choropleths with r
 ---
 
+Choropleths are those [heatmap style](http://flowingdata.com/2009/11/12/how-to-make-a-us-county-thematic-map-using-free-tools/) maps you often see. I've been keen to render some heatmaps out of the [twitterplaces](http://twitterplaces.com) data I have, so I spent today learning R and using it to generate some graphs.
 
-http://blog.revolutionanalytics.com/2009/11/choropleth-challenge-result.html
-
+First up - I installed R using the os x binaries, then went right on to install rgdal.
 
 ## Installing rgdal on snow leopard
 
@@ -149,7 +149,11 @@ Then let's plot it in perspective 3d
 <img src="/images/choropleth/sfo-persp.png" />
 <cite>User count in San Francisco rendered in a perspective view</cite>
 
+The mission / cbd is in the top right of this graph, so you can see where most people are during the day.
+
 ## Animating the graph over time
 
-This is rendering 5 hours of data on one graph, but I was interested to see how the activity looked on an hourly basis, so I wrote a little R script to re-render the graph for each hour of the day, which will be a topic for tomorrows blog post.
+This is rendering 5 hours of data on one graph, but I was interested to see how the activity looked on an hourly basis, so I wrote a little R script to re-render the graph for each hour of the day, which may be a topic for tomorrows blog post. 
+
+nb: Note that I never actually created realistic looking choropleths in this post. ;D
 
