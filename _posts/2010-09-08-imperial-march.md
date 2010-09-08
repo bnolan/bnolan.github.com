@@ -9,4 +9,4 @@ One of the benefits from working at home is that I get to play trumpet and guita
 <br />
 <br />
 
-For some reason, practising lots of the trumpet isn't helping met get better at all.
+For some reason, practising lots of the trumpet isn't helping me get better at all.
