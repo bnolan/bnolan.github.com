@@ -98,7 +98,7 @@ Enable CSV export from psql.
     \f ',' 
     \a
     \pset footer off
-    \o filename
+    \o /tmp/tweets.csv
     
 Then query...
 
@@ -108,6 +108,8 @@ Then query...
       tweets 
     where 
       geom is not null
+    and
+      st_x(geom) < -100
       
 This also gives us the hour of the day that the tweet was made, which might come in handy later. I loaded this data into R, then I could plot a scatter graph:
 

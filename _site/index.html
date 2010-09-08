@@ -33,6 +33,64 @@
         
           <div class="grid_2">
             <div class="metadate">
+              Tue
+              September 07
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/09/07/tweet-map-in-r.html">Tweet map in R</a></h3>
+              <div class="postcontent preview">
+                <p>Just as a quick follow up to yesterdays post - this is the very rough visualization I came up with using R, openGL and ffmpeg.</p>
+<object height='320' width='400'><param name='movie' value='http://www.youtube.com/v/iqz6skQLkaQ?fs=1&amp;hl=en_US' /><param name='allowFullScreen' value='true' /><param name='allowscriptaccess' value='always' /><embed src='http://www.youtube.com/v/iqz6skQLkaQ?fs=1&amp;hl=en_US' allowfullscreen='true' type='application/x-shockwave-flash' allowscriptaccess='always' height='320' width='400' /></object><br /><br />
+<p>The r script used was something like this. The texture isn&#8217;t correctly georeferenced, and needs to be flipped 180°, but this was as far as I got before having to move onto other work.</p>
+
+<pre><code>ourplot &lt;- function (h) {
+  north = 51.6
+  south = 51.4
+  east = 0.05
+  west = -0.25
+
+  df &lt;- subset(tweets, x &gt; west &amp; x &lt; east &amp; y &lt; north &amp; y &gt; south &amp; hour == h)
+
+  df &lt;- rbind(df, data.frame(x=east, y=north, hour=-1))
+  df &lt;- rbind(df, data.frame(x=west, y=south, hour=-1))
+
+  hdf &lt;- hist2d(df$x, df$y, nbins=50, show=FALSE)
+
+  persp3d( 
+    hdf$x, 
+    hdf$y, 
+    hdf$counts, 
+    ticktype=&quot;detailed&quot;,
+    xlab=&quot;Longitude&quot;,
+    ylab=&quot;Latitude&quot;,
+    zlab=&quot;# Tweets&quot;,
+    zlim=c(-30,50),
+    expand=0.5, 
+    shade=1.0, 
+    specular=&quot;white&quot;,
+    col=&quot;white&quot;,
+    texture=&quot;/tmp/london.png&quot;,
+    box=FALSE,
+    axes=FALSE
+  )
+
+  rgl.snapshot(paste(&quot;/tmp/london-3d-&quot;,h,&quot;.png&quot;,sep=&quot;&quot;))
+}
+
+for (hour in seq(0,24,by=1)) ourplot(hour)</code></pre>
+
+<p>I have a vague plan of taking the histogram matrix, exporting it to json and using protovis to redraw the graphs, possibly as a <a href='http://vis.stanford.edu/protovis/ex/stream.html'>streamgraph</a>.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/09/07/tweet-map-in-r.html#disqus_thread">Tweet map in R</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
               Mon
               September 06
               </div>
@@ -127,7 +185,7 @@ plot(lon,col=pal[9 - (lon$USER_COUNT * 9 / max(lon$USER_COUNT))],border=&quot;wh
 <pre><code>\f &#39;,&#39; 
 \a
 \pset footer off
-\o filename</code></pre>
+\o /tmp/tweets.csv</code></pre>
 
 <p>Then query&#8230;</p>
 
@@ -136,7 +194,9 @@ plot(lon,col=pal[9 - (lon$USER_COUNT * 9 / max(lon$USER_COUNT))],border=&quot;wh
 from
   tweets 
 where 
-  geom is not null</code></pre>
+  geom is not null
+and
+  st_x(geom) &lt; -100</code></pre>
 
 <p>This also gives us the hour of the day that the tweet was made, which might come in handy later. I loaded this data into R, then I could plot a scatter graph:</p>
 
