@@ -33,6 +33,54 @@
         
           <div class="grid_2">
             <div class="metadate">
+              Wed
+              September 15
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/09/15/twitterplaces-ng.html">Twitterplaces Next Generation</a></h3>
+              <div class="postcontent preview">
+                <p>Ever since I <a href='http://bennolan.com/2010/09/13/a-world-of-tweets.html'>discovered</a> that you can index all of the worlds geotagged tweets with Twitter, I&#8217;ve been working on the next generation of twitterplaces. It&#8217;s a challenge. The app has to work on datasets the size of Wellington (around 110 tweets per day) to New York (around 15k tweets per day) and provide an intimate experience for every user.</p>
+
+<p>One of the biggest problems with displaying lots of data on a map is that you end up with massive clouds of google markers all over the map. These look okay when there&#8217;s less than 5 markers, but above that, clicking on many markers is a bad user experience, it&#8217;s hard to get an aggregate view of what&#8217;s going on.</p>
+<img src='/images/twng.png' /><cite>Viewing wellington tweets grouped by contour density maps</cite>
+<p>I&#8217;ve already posted about using R to create contour maps of tweet density. I&#8217;ve now taken that code and changed it from a manual job, into something automated. It&#8217;s not production ready yet - but the idea is:</p>
+
+<ol>
+<li>Contour generator (R script) runs hourly on top 1000 cities</li>
+
+<li>R queries postgres for tweets in the last hour</li>
+
+<li>Generate the density matrix, and generate contour lines</li>
+
+<li>Convert contours into <a href='http://postgis.refractions.net/docs/ch04.html#RefObject'>WKT</a> polygons and save to the database</li>
+</ol>
+
+<p>When you display a city page - you export the contour polygons into a json array (indexed by hour) and then give the user some UI for changing what time window they are looking at.</p>
+
+<h1 id='realtime_contour_generation'>Realtime contour generation</h1>
+
+<p>I&#8217;m not in a hurry to try and do this in realtime, but it has been at the back of my mind. My bookmarks tagged <a href='http://www.delicious.com/benn/contour'>contour</a> have my notes on the basic algorithm. Any query that filters keyword, user_id, generate contour maps of an individual suburb, do language analysis, sentiment analysis, etc - would generate data suitable for converting into contour maps.</p>
+
+<p>If I wanted to be able to generate this data in realtime, there are two ways I can see of doing it.</p>
+
+<ol>
+<li>Farm the raw tweet data off to the browser and generate the contour lines in Javascript</li>
+
+<li>An optimized C++ app that uses sse / simd to generate the contour lines in a fraction of the time of R</li>
+</ol>
+
+<p>Or - I could charge customers monthly, fire up another ec2 instance and keep using the existing queries in R.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/09/15/twitterplaces-ng.html#disqus_thread">Twitterplaces Next Generation</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
               Tue
               September 14
               </div>
