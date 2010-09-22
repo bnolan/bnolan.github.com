@@ -33,6 +33,80 @@
         
           <div class="grid_2">
             <div class="metadate">
+              Thu
+              September 23
+              </div>
+          </div>
+          
+          <div class="grid_5 post">
+            <h3 class="title"><a href="/2010/09/23/varnish-and-rails.html">Varnish and Rails</a></h3>
+              <div class="postcontent preview">
+                <p>I got my R scripts running on production for <a href='http://twitterplaces.com/'>twitterplaces</a> - so if you browse to <a href='http://twitterplaces.com/wlg'>Wellington</a> or <a href='http://twitterplaces.com/lon'>London</a>, you can see twitter densities. That&#8217;s all well and good and very rough, there&#8217;s a lot of work to do:</p>
+
+<ol>
+<li>The time slider looks rubbish</li>
+
+<li>The tweet frequency histogram isn&#8217;t adjusted for the cities time offset</li>
+
+<li>The extents of the different cities are different, so you get elongated contours</li>
+
+<li>The contour needs to be subdivided for smoothness</li>
+
+<li>It would be good to weigh against multiple tweets from a user</li>
+</ol>
+
+<p>But the first problem, is that the contours are exceptionally expensive to convert to json, which is done on every page load by ruby. I wanted to have an easy way to cache a page for 60 seconds, so that if the page gets &#8216;seagulled&#8217; (a thousand people follow a link from techcrunch, look at the page for a second, then go back to techcrunch to comment &#8216;it doesnt scale get nosql why not use php&#8217;) the site doesn&#8217;t go down.</p>
+
+<h1 id='ask_koz'>Ask Koz</h1>
+
+<p>I originally was going to do some apache rewriterule hax, but first I asked <a href='http://twitter.com/nzkoz'>@nzkoz</a>, who told me to look into <a href='http://www.varnish-cache.org/'>Varnish</a>. Varnish looked good so I gave it a go.</p>
+
+<h1 id='varnish'>Varnish</h1>
+
+<p>I followed the installation instructions <a href='http://www.varnish-cache.org/installation/ubuntu'>for Ubuntu</a>, then edited <code>/etc/defaults/varnish</code> to make varnish listen on port 80.</p>
+
+<pre><code>DAEMON_OPTS=&quot;-a :80\
+             -T localhost:6082 \</code></pre>
+
+<p>I edited <code>/etc/apache2/ports.conf</code> to move apache over to port 8080:</p>
+
+<pre><code>NameVirtualHost *:8080
+Listen 8080</code></pre>
+
+<p>And edited the appropriate <code>sites-available</code> scripts to move the virtual hosts over to the new port. Then I edited my <code>/etc/varnish/default.vcl</code> (make sure you install Varnish 2.x, not the 1.x that comes with some old varieties of Ubuntu) like so:</p>
+
+<pre><code>sub vcl_recv {
+        unset req.http.Cookie;
+}
+  
+sub vcl_fetch {
+        if (req.request == &quot;GET&quot;) {
+                unset beresp.http.Set-Cookie;
+                set beresp.cacheable = true;
+                set beresp.ttl = 60s;
+        }
+
+        if (req.url ~ &quot;^/images/&quot; || req.url ~ &quot;^/javascripts&quot; || req.url ~ &quot;^/stylesheets&quot;){
+                set beresp.ttl = 15m;
+        }
+}</code></pre>
+
+<p>All GETs are cached for 60 seconds. Javascripts, images and stylesheets are cached (on the client side) for 15 minutes.</p>
+
+<p>Note that this varnish config will annihilate any site that uses cookies - but twitterplaces (and weheartplaces) currently don&#8217;t use cookies at all - so everyones looks at the same pages. I then restarted varnish and <em>voila</em>, we have a fast cached site that can cope with some seagulling.</p>
+
+<p>To check that things are working - I tailed my rails log, hit the site up with <code>curl -I http://twitterplaces.com/wlg/</code> and each request was served correctly, but didn&#8217;t show up in the rails logs until 60 seconds had elapsed. Varnish is very clever and will serve the old version of the cached page until the new version has finished regenerating. Varnish really does seem like a neat bit of kit.</p>
+
+<p>Elapsed time, from learning of Varnish, to installing, configuring, testing and writing this blog post - 45 minutes.</p>
+              </div>
+          </div>
+          
+          <!--div class="comment-link"><a href="/2010/09/23/varnish-and-rails.html#disqus_thread">Varnish and Rails</a></div-->
+          
+          <div class="clear"></div>
+        
+          <div class="grid_2">
+            <div class="metadate">
               Wed
               September 22
               </div>
