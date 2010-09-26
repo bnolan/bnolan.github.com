@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="plane.js"></script>
 		<script type="text/javascript" src="cube.js"></script>
 		<style type="text/css">
-			body {
+			body{
 				color: #71544e;
 				font-family:Monospace;
 				font-size:13px;
@@ -34,30 +34,56 @@
 				color: #b07861;
 			}
 
+			/*demo page css*/
+			body{ font: 62.5% Cambria,Georgia,serif; margin: 50px;}
+			.demoHeaders { margin-top: 2em; }
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+			.columnbox { height: 170px; width: 48%; float:left; margin-right: 1%; }
+			#eq span { 	height:120px; float:left; margin:15px 	}
+
 		</style>
 	</head>
 	<body>
 
 		<div id="container"><br /><br /><br /><br /><br />Generating...</div> 
-		<div id="info">The island of captain benis - powered by <a href="http://github.com/mrdoob/three.js" target="_blank">three.js</a></div> 
+		<div id="dialog">
+		  <pre>
+Controls:
+
+&larr; Move left
+&rarr; Move right
+&uarr; Move down
+&darr; Move up
+[CTRL] Hold down and use arrows
+    to rotate camera
+[SPACE] Hold to draw a mountain
+</pre>
+
+<p>
+  Proudly powered by <a href="http://github.com/mrdoob/three.js" target="_blank">three.js</a>
+</p>
+		</div> 
+
 
 		<script type="text/javascript">
 
     $(document).ready(function(){
   		$('#dialog').dialog({
-  			autoOpen: false,
-  			width: 600,
+  			autoOpen: true,
+  			width: 320,
+  			resizable : false,
+  			title : "The island of @captainbenis",
   			buttons: {
-  				"Ok": function() { 
+  				"Begin": function() { 
   					$(this).dialog("close"); 
-  				}, 
-  				"Cancel": function() { 
-  					$(this).dialog("close"); 
-  				} 
+  					init();
+  				}
   			},
   			modal: true
   		});
-  	})
+  	});
 
 			var Perlin = function () {
 
@@ -148,8 +174,7 @@
 			var windowHalfY = window.innerHeight >> 1;
 
 
-			init();
-			setInterval( loop, 1000 / 15 );
+			//init();
 
       function splat(x,y){
 				context = heightMap.getContext( '2d' );
@@ -295,6 +320,8 @@
 				document.addEventListener('mousemove', onDocumentMouseMove, false);
 
         //$('canvas').css({position:'absolute'}).animate({left : -1200}, 10000);
+        
+  			setInterval( loop, 1000 / 15 );
 			}
 
 			function onDocumentMouseMove(event) {
@@ -307,7 +334,7 @@
 			$F = Math.PI / 2;
       
 			function loop() {
-        var KEY_Z = 90; 
+        var KEY_CTRL = 17; 
         var KEY_SPACE = 32; 
         var KEY_LEFT  = 37; 
         var KEY_UP    = 38; 
@@ -317,7 +344,7 @@
 				camera.position.z = Math.sin($F) * 300;
 				camera.position.x = Math.cos($F) * 300;
 
-        if(keydown[KEY_Z]){
+        if(keydown[KEY_CTRL]){
 
           if(keydown[KEY_UP]){
     				camera.position.y -= 10;
