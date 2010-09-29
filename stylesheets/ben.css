@@ -302,3 +302,14 @@ pre{
 .dsq-options{
   display: none !important;
 }
+
+quote{
+  display: block;
+  padding-left: 20px;
+  font-family: georgia;
+  font-size: 1.3em;
+  line-height: 150%;
+  font-style: italic;
+  color: #222;
+  margin-bottom: 30px;
+}
