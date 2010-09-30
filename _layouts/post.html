@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/stylesheets/960.css" />
     <link rel="stylesheet" href="/stylesheets/ben.css" />
     <link rel="alternate" type="application/atom+xml" title="Ben Nolan - Atom" href="http://bnolan.github.com/atom.xml" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   </head>
   <body>
     <div class="container_12">
@@ -132,6 +133,9 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
+      $(".postcontent img").click(function(){
+        window.location = $(this).attr('src');
+      })
     </script>
     
   </body>
