@@ -1,0 +1,83 @@
+<script src="../lib/jquery.js"></script>
+<script type="text/coffeescript" src="app.coffee"></script>
+<style>
+body{
+/*   -webkit-perspective: 500;*/
+overflow: hidden;
+}
+canvas{
+  position: absolute;
+  border: 1px solid #ccc;
+}
+canvas.west{
+  background: white;
+/*  -webkit-transform: rotateX(35.264deg) rotateY(45deg) translateY(200px);*/
+  -webkit-transform: scale(0.98) rotate(15deg) skew(15deg, 15deg);
+  background: #eed;
+}
+canvas.north{
+  background: #ffe;
+  -webkit-transform: scale(0.96) rotate(-15deg) skew(-15deg, -15deg);
+ /*  -webkit-transform: rotateX(35.264deg) rotateY(-45deg) translateY(200px); */
+ margin: 0px 0 0 87px;
+}
+canvas.floor{
+  background: #fefefe;
+/*  -webkit-transform: rotateX(53deg) rotateZ(-45deg) translateY(200px);*/
+  -webkit-transform: scale(0.95) rotate(-45deg) skew(15deg, 15deg);
+/*  margin: 33px 0 0 50px;*/
+  margin: 0 0 0 42px;
+  border: none;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+label{
+  position: absolute;
+  z-index: 10000;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  display: block;
+  margin: -40px 0 0 75px;
+}
+
+body{
+  font-family: sans-serif;
+}
+
+#player{
+  position: absolute;
+  width: 64px;
+  height: 64px;
+}
+#sidebar{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 20px;
+  z-index: 50000;
+  background: #eee;
+}
+#playfield{
+  position: absolute;
+  left: 300px;
+  top: 300px;
+  z-index: 10000;
+}
+#sidebar{}
+</style>
+
+<div id="sidebar">
+  <input type="text" id="color" value="#ff0077" />
+</div>
+
+<div id="container">
+  <div id="playfield">
+    <img src="orb.png" id="player" />
+  </div>
+</div>
+
+<script src="../lib/coffee-script.js"></script>
+
