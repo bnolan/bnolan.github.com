@@ -4,6 +4,7 @@
 body{
 /*   -webkit-perspective: 500;*/
 overflow: hidden;
+fontsize: 0.9em;
 }
 canvas{
   position: absolute;
@@ -32,6 +33,11 @@ canvas.floor{
   border-right: 1px solid #ccc;
 }
 
+canvas.selected{
+  background: #ff7;
+  border-color: black;
+}
+
 label{
   position: absolute;
   z-index: 10000;
@@ -55,10 +61,11 @@ body{
   right: 0;
   top: 0;
   bottom: 0;
-  width: 300px;
-  padding: 20px;
+  width: 240px;
+  padding: 0;
   z-index: 50000;
   background: #eee;
+  -webkit-box-shadow: -1px 0 3px rgba(0,0,0,0.4);
 }
 #playfield{
   position: absolute;
@@ -66,10 +73,73 @@ body{
   top: 300px;
   z-index: 10000;
 }
-#sidebar{}
+#sidebar dl{
+  font-size: 0.7em;
+  color: #555;
+  padding: 5px 10px;
+}
+#sidebar dt, #sidebar dd{
+  line-height: 20px;
+}
+#sidebar dt{
+  position: absolute;
+  padding: 0;
+  margin: 0;
+}
+#sidebar dd{
+  border-bottom: 1px dotted #ccc;
+  margin: 0;
+  padding: 0 0 0 80px;
+}
+#sidebar dd input{
+  width: 70px;
+}
+#sidebar h3{
+  background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#aaa));
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #aaa;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  color: #eee;
+  margin: 0;
+  text-shadow: 0 1px 1px #555;
+}
+#sidebar h3:before{
+  content: "+";
+}
 </style>
 
 <div id="sidebar">
+  
+  <div>
+    <h3>
+      Position
+    </h3>
+    
+    <dl>
+      <dt>Position X</dt>
+      <dd><input type="text"></dd>
+      <dt>Position Y</dt>
+      <dd><input type="text"></dd>
+      <dt>Position Z</dt>
+      <dd><input type="text"></dd>
+    </dl>
+    
+    <dl>
+      <dt>Scale X</dt>
+      <dd><input type="text"></dd>
+      <dt>Scale Y</dt>
+      <dd><input type="text"></dd>
+      <dt>Scale Z</dt>
+      <dd><input type="text"></dd>
+    </dl>
+    
+    <dl>
+      <dt>Rotation</dt>
+      <dd><input type="text"> Radians</dd>
+    </dl>
+  </div>
+  
   <input type="text" id="color" value="#ff0077" />
 </div>
 
