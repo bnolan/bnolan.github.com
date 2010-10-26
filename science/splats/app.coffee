@@ -40,6 +40,7 @@ class Wall
 
     @canvas = $("<canvas />")
     @label = $("<label />")
+    @canvas.click @onclick
     
     position = new Vector(@grid.x * 100, 0, @grid.y * 100)
     pt = position.project()
@@ -101,7 +102,11 @@ class Wall
     @ctx = @canvas[0].getContext('2d')
     
     # if @grid.y == 0 and @isWest() # 
-
+    
+  onclick: (e) =>
+    $('canvas').removeClass('selected')
+    @canvas.addClass('selected')
+    
   project: (vector)->
     r = 0.46365
     r = 0.52
