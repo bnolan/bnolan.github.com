@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Additions to Backbone views
+title: Game design
 ---
 
 I've been playing around with [Hutch](http://www.youtube.com/watch?v=BS27XGxwMes) lately, and have been reading some game design articles. I found this [pearl of wisdom](http://www.graftgold.com/) from the developer of some old Commodore 64 games that I used to love as a kid.
