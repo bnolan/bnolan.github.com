@@ -34,13 +34,114 @@ A namespace with a few helpers I use to work with jquery mobile better. `activeP
 
 ##  Venue class
 
+    class Venue extends Backbone.Model
+      getName: ->
+        @get('name')
+    
+      getAddress: ->
+        [@get('address'), @get('city'), @get('state')].join ", "
+    
+      getImageUrl: ->
+        @get('photo_url')
+    
+      getLatitude: ->
+        @get('geolat')
+
+      getLongitude: ->
+        @get('geolong')
+
+      getMapUrl: (width, height) ->
+        width ||= 300
+        height ||= 220
+    
+        "http://maps.google.com/maps/api/staticmap?center=#{@getLatitude()},#{@getLongitude()}&zoom=14&size=#{width}x#{height}&maptype=terrain&markers=color:red|#{@getLatitude()},#{@getLongitude()}&sensor=false"
+
 This is a backbone model that takes a hash of data and makes it available with a few helper methods.
 
 ## VenueCollection
 
+    class VenueCollection extends Backbone.Collection
+      model : Venue
+  
+      constructor: ->
+        @refresh($FOURSQUARE_JSON)
+
 This is instantiated as Venues (try running Venues.models in your javascript console and you'll see all the loaded venues). When the collection is created, I call refresh with the FOURSQUARE_JSON (which is loaded from foursquare.js) which populates the collection immediately.
 
 ## EditVenueView
+
+    class EditVenueView extends Backbone.View
+      constructor: ->
+        super
+    
+        # Get the active page from jquery mobile. We need to keep track of what this
+        # dom element is so that we can refresh the page when the page is no longer active.
+        @el = app.activePage()
+    
+        @template = _.template('''
+        <form action="#venue-<%= venue.cid %>-update" method="post">
+
+          <div data-role="fieldcontain">
+            <label>Name</label>
+            <input type="text" value="<%= venue.getName() %>" name="name" />
+          </div>
+      
+          <div data-role="fieldcontain">
+            <label>Address</label>
+            <input type="text" value="<%= venue.get('address') %>" name="address" />
+          </div>
+      
+          <div data-role="fieldcontain">
+            <label>City</label>
+            <input type="text" value="<%= venue.get('city') %>" name="city" />
+          </div>
+      
+          <div data-role="fieldcontain">
+            <label>State</label>
+            <input type="text" value="<%= venue.get('state') %>" name="state" />
+          </div>
+      
+          <button type="submit" data-role="button">Save</button>
+        </form>
+        ''')
+    
+        # Watch for changes to the model and redraw the view
+        @model.bind 'change', @render
+    
+        # Draw the view
+        @render()
+    
+      events : {
+        "submit form" : "onSubmit"
+      }
+
+      onSubmit: (e) ->
+        @model.set {
+          name : @$("input[name='name']").val(),
+          address : @$("input[name='address']").val(),
+          city : @$("input[name='city']").val(),
+          state : @$("input[name='state']").val()
+        }
+    
+        @model.trigger('change')
+
+        app.goBack()
+    
+        e.preventDefault()
+        e.stopPropagation()
+
+      render: =>
+        # Set the name of the page
+        @el.find('h1').text("Editing #{@model.getName()}")
+    
+        # Render the content
+        @el.find('.ui-content').html(@template({venue : @model}))
+
+        # A hacky way of reapplying the jquery mobile styles
+        app.reapplyStyles(@el)
+
+        # Delegate from the events hash
+        @delegateEvents()
 
 The first view. It sets the active page to the @el attribute, so that it can refresh the page later on (remember that the activePage may change when the user navigates to another page, so we need to be able to refer to what element we drew the form in). Then we create a template using underscore.template. The underscore template library uses ERB style syntax to generate HTML. Remember that the ERBs are evaluated using the javascript interpreter, not coffeescript, so there's a bit of mixing and matching of coding styles going on here.
 
@@ -63,6 +164,25 @@ This URL is recognized by backbone (see the routes in the controller) and will c
 Displays the list of places. Uses the `.each()` method that underscore.js makes available (or delegates to the native browser implementation) to iterate over all the venues and create a link to them.
 
 ## HomeController
+
+    class HomeController extends Backbone.Controller
+      routes :
+        "venues-:cid-edit" : "edit"
+        "venues-:cid" : "show"
+        "home"  : "home"
+
+      constructor: ->
+        super
+        @_views = {}
+
+      home : ->
+        @_views['home'] ||= new HomeView
+    
+      show: (cid) ->
+        @_views["venues-#{cid}"] ||= new ShowVenueView { model : Venues.getByCid(cid) }
+
+      edit: (cid) ->
+        @_views["venues-#{cid}-edit"] ||= new EditVenueView { model : Venues.getByCid(cid) }
 
 I only have one controller in this app, but you could easily split it into two (a home controller and a venues controller). First up - we define the routes that we match. Note the routes have to be in an order of decreasing specificity, otherwise `venues-:cid` would gobble up `venues-1235-edit`.
 
