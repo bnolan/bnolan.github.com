@@ -16,9 +16,9 @@ I'm using the Foursquare API, Backbone.js, Underscore.js, CoffeeScript, jQuery a
 
 If you aren't up to date with coffeescript you can probably read through application.js and understand most of the code. I also cached a foursquare venue API search result as foursquare.json. The foursquare API doesn't support JSONP so I couldn't use it directly.
 
-# Patches to jQuery and Backbone
+# Patch to jQuery Mobile
 
-There are two patches to jQuery, one that I discussed in my previous post to make jQuery route the URLs correctly, and one to fixes a possible [bug in Backbone](https://github.com/documentcloud/backbone/issues/issue/91). You can see them by searching for `bnolan` in the code.
+There is only patch require to the libraries - one that I discussed in my [previous post](http://bennolan.com/2010/11/23/backbone-and-jquery-mobile.html) to make jQuery route the URLs correctly.
 
 # [Index.html](https://github.com/bnolan/Backbone-Mobile/blob/master/index.html)
 
