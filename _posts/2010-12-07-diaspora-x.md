@@ -21,4 +21,4 @@ I'm not sure how much more work I'm going to do on this project, I've proven the
 
 However - if you want me to add a feature to the diaspora-x website, put your requests into the [github issue tracker](https://github.com/bnolan/diaspora-x/issues) and I'll see what I can do.
 
-There are installation instructions [here](https://github.com/bnolan/diaspora-x/blob/master/doc/install.md) if you want to try running Diaspora*x yourself. 
+There are installation instructions [here](https://github.com/bnolan/diaspora-x/blob/master/doc/install.md) if you want to try running Diaspora\*x yourself. 
