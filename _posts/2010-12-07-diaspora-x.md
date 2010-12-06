@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Diapora*x
+title: Diaspora*x
 ---
 
 I life Facebook, and at the moment I think it does a great job of managing privacy on the Facebook site. My only concern is that of censorship. If the US government asks Facebook to censor something, Facebook has to acquiesce to their request.
