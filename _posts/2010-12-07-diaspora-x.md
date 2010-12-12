@@ -3,7 +3,7 @@ layout: post
 title: Diaspora*x
 ---
 
-I life Facebook, and at the moment I think it does a great job of managing privacy on the Facebook site. My only concern is that of censorship. If the US government asks Facebook to censor something, Facebook has to acquiesce to their request.
+I like Facebook, and at the moment I think it does a great job of managing privacy on the Facebook site. My only concern is that of censorship. If the US government asks Facebook to censor something, Facebook has to acquiesce to their request.
 
 I don't believe this is a problem in the short term (if the wikileaks facebook page goes offline no one is going to die), but I do think the idea of having a distributed social network - where there is no central point of control or central point of failure - is a cool idea.
 
