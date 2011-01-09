@@ -8,15 +8,15 @@ I had some issues getting couchdb to work correctly behind Apache. The big probl
 Here is the complete virtualhost setup for giving your localhost apps cross-domain access to couchone.
 
     <VirtualHost *:80>
-            ServerName couchdb.nolanconsul.com
+            ServerName mycouch.com
 
             Header set Access-Control-Allow-Origin "*"
             Header set Access-Control-Allow-Headers Content-Type
             Header set Access-Control-Allow-Methods "GET, PUT, OPTIONS, DELETE, POST"
             Header set Access-Control-Max-Age 3600
 
-            ProxyPass / http://present.couchone.com/ nocanon
-            ProxyPassReverse / http://present.couchone.com/
+            ProxyPass / http://mycouch.couchone.com/ nocanon
+            ProxyPassReverse / http://mycouch.couchone.com/
 
             RewriteEngine On
             RewriteCond %{REQUEST_METHOD} ^OPTIONS
