@@ -10,11 +10,13 @@ Thus Twitterplaces, which was running on a dual-core 4gb box so it could index a
 ## [Heroku](http://heroku.com/)
 
 _Pros:_ Managed rails hosting, don't have to do any admin, everything is backed up. 
+
 _Cons:_ Expensive (minimum of $50/month), no postgis.
 
 ## [Linode](http://linode.com/)
 
 _Pros:_ Affordable ($20/month), can install whatever I like (Postgis / R / FastCGI scripts).
+
 _Cons:_ Have to sysadmin and back it up myself.
 
 I'm leaning towards linode at the moment since I already have one running diaspora-x.com, but I'd like some feedback on this. I know that at some level I should put my app on Heroku - but maybe I can have it running on my 512mb linode for a few months while I see if there is any uptake in weheartplaces at all?
