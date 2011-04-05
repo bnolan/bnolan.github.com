@@ -1,0 +1,48 @@
+<style>
+body,html{width: 100%; height: 100%; margin: 0; padding: 0; background: #f3f3f3;}
+#transcript{
+  height: 400px;
+  width: 500px;
+  border: 1px solid #ccc;
+  background: white;
+  padding: 5px;
+  overflow: auto;
+}
+textarea{
+  display: none;
+}
+input{
+  width: 512px;
+  font: inherit;
+}
+#inputs>b{
+  display: inline-block;
+  border-radius: 20px;
+  color: white;
+  background: #777;
+  line-height: 40px;
+  width: 40px;
+  text-align: center;
+}
+</style>
+
+<div id="inputs">
+  <b class="bore">0</b>
+</div>
+
+<div id="transcript">
+</div>
+
+<form action="#">
+  <textarea>
+frogs are green
+dogs are brown
+brown is color
+green is color
+  </textarea>
+  <input />
+</form>
+
+<script src="jquery.js" /></script>
+<script src="underscore.js" /></script>
+<script src="sally.js"></script>
