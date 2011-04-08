@@ -1,0 +1,187 @@
+<!doctype html> 
+<html lang="en" class="no-js"> 
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+  <!-- Mobile viewport optimization http://goo.gl/b9SaQ -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  
+  <!-- Home screen icon  Mathias Bynens http://goo.gl/6nVq0 -->
+  <!-- For iPhone 4 with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
+  <!-- For first-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
+  <!-- For nokia devices: -->
+  <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
+  
+  <!--iOS web app, deletable if not needed -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-startup-image" href="img/l/splash.png">
+
+  <meta http-equiv="cleartype" content="on">
+
+  <script src="zepto.js"></script>
+  
+  <title>Native Maps | Bennolan.com</title> 
+</head>
+<body> 
+<div id="map"> 
+  <div id="mapinner"></div>
+</div>
+<style>
+body,html{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+*{
+  -webkit-user-select: none;
+}
+#map{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ccd;
+}
+#mapinner{
+  position: absolute;
+}
+.maptile{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
+
+<script>
+  function createTile(x,y){
+    var x1 = x * 256;
+    var y1 = y * 256;
+    var src = "/~ben/tiles/17/" + (121244 + x) + "/" + (75918 + y) + ".jpg";
+    src = "http://a.tile.openstreetmap.org/16/" + (60624 + x) + "/" + (37973 + y) + ".png"
+    // src = "tile.png";
+    var img = $("<img />").attr('src',src).addClass('maptile');
+    img.css('-webkit-transform', 'translate3d(' + x1 +'px,' + y1 + 'px, 0px)');
+    $('#mapinner').append(img);
+  }
+  
+  for(x=0;x<3;x++){
+    for(y=0;y<3;y++){
+      createTile(x,y);
+    }
+  }
+
+  // $('#map').touchmove(function(e){
+  //   
+  //   e.preventDefault();
+  // });
+  // 
+  // 
+  // $('body').touch(function(e){
+  //   e.preventDefault();
+  // });
+
+  // window.animFrame = (function() {
+  //     return  window.requestAnimationFrame       || 
+  //             window.webkitRequestAnimationFrame || 
+  //             window.mozRequestAnimationFrame    || 
+  //             window.oRequestAnimationFrame      || 
+  //             window.msRequestAnimationFrame     || 
+  //             function(callback){
+  //                 setTimeout(function() {
+  //                     callback(new Date().getTime());
+  //                 }, 1000 / 60);
+  //             };
+  // })();
+  
+  var i = 0,
+    div = $('#mapinner'),
+    x = 0,
+    y = 0,
+    dx = 0,
+    dy = 0;
+    
+  function animate(){
+    // var x = -parseInt(Math.sin(i / 0.777) * 150 + 100),
+    //   y = -parseInt(Math.cos(i) * 150 + 100);
+
+    if(!ox){
+      x += dx;
+      y += dy;
+    }
+      
+    if((dx!=0)||(dy!=0)){
+
+      dx *= 0.95;
+      dy *= 0.95;
+
+      if(Math.abs(dx)<0.5){
+        dx = 0;
+      }
+      if(Math.abs(dy)<0.5){
+        dy = 0;
+      }
+
+      div.css('-webkit-transform', 'translate3d(' + x +'px,' + y + 'px, 0px)');
+    }
+  }
+  
+  $('body').bind('touchstart touchmove touchend', function(e){
+    e.preventDefault();
+  });
+
+  var ox = null,
+    oy = null;
+    
+  $('#map').bind('touchstart', function(e){
+    var touch = e.changedTouches[0];
+
+    ox = -x + touch.screenX;
+    oy = -y + touch.screenY;
+
+    e.preventDefault();
+  });
+
+  $('#map').bind('touchend', function(e){
+    var touch = e.changedTouches[0];
+
+    ox = null;
+    oy = null;
+
+    e.preventDefault();
+  });
+
+  $('#map').bind('touchmove', function(e){
+    var touch = e.changedTouches[0];
+    
+    if(ox){
+      var nx = parseInt(touch.screenX) - ox,
+        ny = parseInt(touch.screenY) - oy;
+        
+      dx = nx - x;
+      dy = ny - y;
+      
+      x = nx;
+      y = ny;
+    }
+
+    e.preventDefault();
+  });
+
+
+  setInterval(animate, 1000 / 60);
+  
+</script>
+
+</body>
+</html>
