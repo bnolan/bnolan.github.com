@@ -25,6 +25,7 @@ And then before we start the app...
     Channels = new ChannelCollection
     Channels.fetch()
 
-There are further issues to solve, like clearing the localStorage when the user logs out. Note that you can't reset the entire localStorage object, so you have to do it per key.
+Then remember to clear localStorage when the user logs out. 
 
-    delete localStorage[Channels.localStorage.name]
+    localStorage.clear()
+    
