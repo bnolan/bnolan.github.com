@@ -3,7 +3,7 @@ layout: post
 title: Coffeescript supersedes Rails
 ---
 
-This is a bit of a [contentious post](https://github.com/rails/rails/compare/9333ca7...23aa7da) (lol that commit is comedy gold) but I think people talking about rails using coffeescript as the new default client-side language are missing the point that coffeescript doesn't complement rails, it supersedes it.
+This is a bit of a [contentious post](https://github.com/rails/rails/compare/9333ca7...23aa7da) (that commit is comedy gold) but I think people talking about rails using coffeescript as the new default client-side language are missing the point that coffeescript doesn't complement rails, it supersedes it.
 
 I come from a biased position, since I'm known for front end development, but I've been doing rails since version 0.6, and most of my contract gigs have a ruby on rails component. Rails is a great tool for building middleware, and when it was invented it was a perfect solution.
 
