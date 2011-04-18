@@ -13,4 +13,4 @@ I have to admit that the buddycloud ui looks a lot nicer, with blues and colors,
 <img src="/images/the-ministry.png" />
 <cite>The ministry of interesting posts</cite>
 
-I'm getting ready to deploy the latest diaspora-x so you can join me in the opensource facebook competitor.
+I'm getting ready to deploy the latest diaspora-x.
