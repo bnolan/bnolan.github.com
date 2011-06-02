@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Offline Mapping
+title: Offline Mapping in HTML5
 ---
 
 I've been doing some research and development around offline mapping for a client of mine. Here's my notes on the current state of technology.
