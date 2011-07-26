@@ -58,5 +58,6 @@ I've got a few things I might do with this code:
 1. Add a progress() method to the class.
 1. Add support for webworkers for desktop browsers.
 1. Port backbone.js to use these continuations, so that for example, the sort function doesn't block when sorting large arrays.
+1. Assuming the mapFunction is constant time, measure the number of inputs to process per interval, then stop checking the date function.
 
 It's pretty interesting stuff, we'll see how we go. 

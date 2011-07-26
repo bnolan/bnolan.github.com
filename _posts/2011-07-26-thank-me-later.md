@@ -3,7 +3,7 @@ layout: post
 title: CORS, Rails and Weinre
 ---
 
-Doing mobile development on your Android but can't get any debugging action going? Add this code (from the inimitable [Tom Shelfer](http://www.tsheffler.com/blog/?p=428) to the rails controller that provides your json views, so that you can serve your app on a different port than you serve your API:
+Doing mobile development on your Android but can't get any debugging action going? Add this code (from the inimitable [Tom Shelfer](http://www.tsheffler.com/blog/?p=428)) to the rails controller that provides your json views, so that you can serve your app on a different port than you serve your API:
 
     before_filter :cors_preflight_check
     after_filter :cors_set_access_control_headers
