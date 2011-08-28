@@ -236,17 +236,26 @@ h3.title a{
 
 
 pre{
-  max-width: 100%;
+  width: 380px;
   overflow: hidden;
-  text-overflow: ellipsis;
   display: block;
   font-size: 12px;
   font-family: 'courier new', fixed;
   line-height: 20px;
   background: white;
-  padding: 5px;
+  padding: 0;
+  border: 5px solid #eee;
   color: #333;
+  text-overflow: ellipsis;
   background: #eee;
+  -webkit-transition: width 0.1s ease-in-out;
+}
+
+pre:hover{
+  text-overflow: auto;
+  width: 640px;
+  -webkit-box-shadow: 2px 2px 7px rgba(0,0,0,0.2);
+  border-color: white;
 }
 
 .post h2, .post h1{
