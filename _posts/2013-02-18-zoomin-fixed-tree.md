@@ -37,3 +37,5 @@ So - if for example, you want to find all the comments under Newtown (to show th
 In the end, we actually used a variable sized structure (so we don't use a whole subnet per node, but instead a specific bit-depth), but the basic idea is as above.
 
 I'm not sure what kind of data structure this is (I think maybe it's a fixed tree?), but it's worked excellently for over 7 years on ZoomIn. Combined with the GIST 2-dimensional index that PostGIS supplies, we've been able to do most all the queries you want on a geo-social site without relying on denormalizing the data or super expensive mega-joins or subselects.
+
+_Edit_ [Stig](https://twitter.com/stojg) from SilverStripe informed me that this technique is called a [Nested Set](http://en.wikipedia.org/wiki/Nested_set_model).
