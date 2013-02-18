@@ -1,6 +1,7 @@
 ---
 layout: post
 title: ZoomIn Fixed Tree Implementation
+category: zoomin
 ---
 
 I've been working on [ZoomIn](http://www.zoomin.co.nz/) a lot in the past few weeks. I need to start writing more newsletters about what I'm doing. But anyway, there's a technical aspect of ZoomIn that I want to highlight, since it's really great.

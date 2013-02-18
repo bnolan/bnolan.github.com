@@ -1,10 +1,14 @@
+---
+layout: nil
+---
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title>Ben Nolan - {{ page.title }}</title>
+    <title>Ben Nolan - Posts about ZoomIn</title>
     <link rel="stylesheet" href="/stylesheets/reset.css" />
     <link rel="stylesheet" href="/stylesheets/text.css" />
     <link rel="stylesheet" href="/stylesheets/960.css" />
@@ -25,12 +29,12 @@
       <div class="clear"></div>
 
       <h2 class="subtitle">
-        <span>I like to make software that is <em>fun</em> and <em>good looking</em>.</span>
+        <span>Blog posts about my work on <a href="http://www.zoomin.co.nz/">ZoomIn.co.nz</a>.</span>
       </h2>
       
       <div class="grid_8">
         
-        {% for post in site.posts limit:50 %}
+        {% for post in site.categories.zoomin limit:50 %}
           <div class="grid_2">
             <div class="metadate">
               {{ post.date | date: "%a" }}
@@ -53,7 +57,16 @@
       </div>
 
       <div class="grid_3 sidebar">
-        {% include sidebar.html %}
+
+        <h2>
+          The day job
+        </h2>
+
+        <p style="position: relative; left: -5px">
+          <img src="/images/37-suitcase.png" width="20" style="float: left; padding: 0 10px 40px 0"/> This blog is about my work on ZoomIn, if you
+          want to see more of my work, see my <a href="/">blog</a>.
+        </p>
+
       </div>
 
       <div class="push"></div>
