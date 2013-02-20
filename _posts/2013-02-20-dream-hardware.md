@@ -15,4 +15,4 @@ And then the monthly costs, hosting with [xtreme](http://www.xtreme.net.nz/servi
  * 1U Rackspace $199 
  * Extra 20gb intl. traffic $99
 
-Which comes in to at least $300 per month, after the capital costs of buying the server. I'm not going to rush into this, but if I get the advertising revenue up a bit on ZoomIn, it might be worth upgrading to some more chunky hardware.
+Which comes in to at least $300 per month, after the capital costs of buying the server. Another option, but I'm not sure of the quality of their services, is [HD](https://my.hd.net.nz/cart.php?a=confproduct&i=0) in Auckland. I'm not going to rush into this, but if I get the advertising revenue up a bit on ZoomIn, it might be worth upgrading to some more chunky hardware.
