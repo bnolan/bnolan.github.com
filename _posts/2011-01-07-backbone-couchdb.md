@@ -3,7 +3,7 @@ layout: post
 title: Backbone and couchdb
 ---
 
-I've been using the [backbone-couchdb](https://github.com/janmonschke/backbone-couchdb) connector by Jan and I've been  impressed. The real showstopper is realtime updates using the _changes feed from couchdb.
+I've been using the [backbone couchdb](https://github.com/janmonschke/backbone-couchdb/) connector by Jan and I've been  impressed. The real showstopper is realtime updates using the changes feed from couchdb.
 
 # Background
 
@@ -45,7 +45,7 @@ And because it's couchdb, all you have to do is create the database record in fu
 
 # The magic of realtime
 
-The magic part of this is the `_changes` feed from couchdb. A client can request the \_changes feed by doing an ajax request. Couchdb will then block (ala long polling) until there are changes on the database, at which point it will send down json and close the connection. The client processes these changes (updating collections and models as needed) and then reopens the connection to the _changes feed.
+The magic part of this is the `_changes` feed from couchdb. A client can request the \_changes feed by doing an ajax request. Couchdb will then block (ala long polling) until there are changes on the database, at which point it will send down json and close the connection. The client processes these changes (updating collections and models as needed) and then reopens the connection to the changes feed.
 
 And because you are already re-rendering your UI whenever a collection changes, you can see in realtime what anyone else is doing on the same dataset that you are using.
 
