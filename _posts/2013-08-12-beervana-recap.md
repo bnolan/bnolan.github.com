@@ -35,4 +35,4 @@ I'm going to talk to Dom at Hashigo and see if he'd be interested in me setting 
 
 # Build something people want
 
-There were a few big eye-openers for me in building the Beervana app. One, you can build really fast when you now exactly what you want it to do. Two, It's awesome building something that people use. I build way too many apps that no-one wants, and thus, no-one every uses. Three, working with collaborators is awesome. Four, Heroku proves yet again that it's the best way to deploy quick little apps.
+There were a few big eye-openers for me in building the Beervana app. One, you can build really fast when you now exactly what you want it to do. Two, It's awesome building something that people use. I build way too many apps that no-one wants, and thus, no-one ever uses. Three, working with collaborators is awesome. Four, Heroku proves yet again that it's the best way to deploy quick little apps.
