@@ -204,7 +204,7 @@ h1.title a{
 	font-size: 0.8em;
 	font-weight: bold;
 	text-transform: uppercase;
-	border-bottom: 1px dotted #999;
+	border-bottom: 1px solid #ccc;
 	color: #333;
 	font-weight: normal;
 	line-height: 28px;
@@ -212,7 +212,7 @@ h1.title a{
 
 
 .metadate{
-  border-bottom: 3px double #ccc;
+  border-bottom: 1px solid #ccc;
   text-align: center;
   font-size: 0.8em;
   color: #777;
@@ -224,7 +224,7 @@ h1.title a{
 
 h3.title{
   line-height: 28px;
-  border-bottom: 3px double #ccc;
+  border-bottom: 1px solid #ccc;
   background: none;
   font-size: 1.3em;
 }
@@ -322,4 +322,20 @@ quote{
   font-style: italic;
   color: #222;
   margin-bottom: 30px;
+}
+
+/*
+ new fonts
+ */
+ 
+h1,h2,h3,h4,h5{
+  font-family: 'Open Sans', serif;
+}
+
+h3{
+ font-weight: 700;
+}
+
+.metadate b{
+  font-family: 'Open Sans', serif;
 }
