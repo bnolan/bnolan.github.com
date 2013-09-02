@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Removing groups functionality"
+category: zoomin
 ---
  
 I've been working on ZoomIn a bit lately, trying to work out how I can grow the traffic from the current 10,000 a day, to something about twice that. It's a huge ask, since most of the traffic to ZoomIn is just people finding it via Google search results, and once someone goes to the ZoomIn site and sees the map, they tend to leave right away (or click on a Google ad).
