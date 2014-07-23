@@ -41,3 +41,5 @@ The way I see it - there are two things I can do from here. One is to keep playi
 @schteppe said that he doesn't really believe in triangle meshes, because they have "bad performance and need small timesteps to function properly", which may be true, but bullet supports trimeshes for static objects, and it'd be a fun challenge adding trimesh support for static objects to cannon.js, so I might have a go at doing that next week. We'll see.
 
 Either way, my next goal is to have a lightmapped, collision detected model of the barcelona pavillion for people to walk around.
+
+addendum: The last thing I could do would be to write a custom physics library that basically just does collision detection using rays. This is an okay solution, and I could probably reuse a lot of the three.js ray-triangle intersection code, but I'd rather have a proper physics engine to be honest.
