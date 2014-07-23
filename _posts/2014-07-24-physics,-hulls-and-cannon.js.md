@@ -36,7 +36,7 @@ I found the [HACD library](http://kmamou.blogspot.co.nz/2011/10/hacd-hierarchica
 
 # Next steps
 
-The way I see it - there are two thinsg I can do from here. One is to keep playing with the HACD library and try and work out how to more accurately model the 3d models I send for processing. The demos included with the HACD library are pretty impressive, involving lots of complex concave shapes, so I suspect I just have my dimensions, or export process (I'm currently going sketchup to blender to meshconv to .off) incorrect. Anyway, the other option which is equally valid, would be to add trimesh support to cannon.js.
+The way I see it - there are two things I can do from here. One is to keep playing with the HACD library and try and work out how to more accurately model the 3d models I send for processing. The demos included with the HACD library are pretty impressive, involving lots of complex concave shapes, so I suspect I just have my dimensions, or export process (I'm currently going sketchup to blender to meshconv to .off) incorrect. Anyway, the other option which is equally valid, would be to add trimesh support to cannon.js.
 
 @schteppe said that he doesn't really believe in triangle meshes, because they have "bad performance and need small timesteps to function properly", which may be true, but bullet supports trimeshes for static objects, and it'd be a fun challenge adding trimesh support for static objects to cannon.js, so I might have a go at doing that next week. We'll see.
 
