@@ -26,9 +26,9 @@ So then I just needed a little bash scripts to create the bundle, `scp` it to my
     git archive master | gzip > /tmp/asset-server.tar.gz
     scp /tmp/asset-server.tar.gz munich:~/builds/
 
-    ssh munich <<ENDS
-      RELEASE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
+    RELEASE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
+    ssh munich <<ENDS
       cd ~/apps/asset-server/current
       forever stop asset-server.js
 
@@ -47,6 +47,8 @@ So then I just needed a little bash scripts to create the bundle, `scp` it to my
       forever start -a -l asset-server.log asset-server.js
     ENDS
 
-    echo " * Deploy complete"
-    
+    echo " * Deploy complete"    
+
 It seems to work for now, it's not ideal, but it'll do.
+
+nb: An earlier version of this post had the `RELEASE=...` line inside the heredoc, which didn't do what I expected. The above code is corrected.
