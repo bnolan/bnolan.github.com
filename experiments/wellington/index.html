@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Walking Wellington using Mapbox Vector tiles</title>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel='stylesheet' href='mapbox-gl.css' />
+	<style>
+		body { margin: 0; padding: 0; }
+		html, body, #map { height: 100%; font-family: sans-serif;}
+	</style>
+</head>
+
+<body>
+  <center style="padding: 200px 0 200px 0">
+    <img src="/images/spinner.gif" /> Loading...
+  </center>
+
+  <canvas id="canvas" width="800" height="800" style="border:1px solid #000000;"></canvas>
+
+	<div id='map'></div>
+
+	<script src='mapbox-gl-dev.js'></script>
+	<script src='jquery.js'></script>
+  <script src='clipper.js'></script>
+	<script src='site.js'></script>
+  <script src='box2d.js'></script>
+  <script src='box2d-separator.js'></script>
+</body>
+</html>
