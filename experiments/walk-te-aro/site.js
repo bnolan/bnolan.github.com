@@ -222,7 +222,11 @@ $.get('./tiles/physics-15-32292-20517.json', function(tile){
   var physics = window.physics = new Physics,
     scale = 1;
   
-  physics.addPolygons(JSON.parse(tile), scale);
+  if(typeof tile == "string"){
+    tile = JSON.parse(tile);
+  }
+
+  physics.addPolygons(tile, scale);
   physics.addPlayer(2249 * scale, 2816 * scale, 5);
   physics.addPolygonsToWorld(1);
 
