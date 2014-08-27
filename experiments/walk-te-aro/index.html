@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Walking Wellington using Mapbox Vector tiles</title>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel='stylesheet' href='mapbox-gl.css' />
+	<style>
+		body { margin: 0; padding: 0; }
+		html, body, #map { height: 100%; font-family: sans-serif; position: relative;}
+    #map-overlay{
+      position: relative;
+      width: 400px;
+      height: 400px;
+      float: left;
+    }
+    .hr, .vr{
+      position: absolute;
+      z-index: 1000;
+    }
+    .hr{
+      top: 200px;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid black;
+    }
+    .vr{
+      left: 200px;
+      top: 0;
+      height: 100%;
+      border-left: 1px solid black;
+    }
+    .dude{
+      border: 10px solid black;
+      border-color: red red transparent transparent;
+      -webkit-transform: rotate(-45deg);
+      margin-left: -5px;
+      margin-top: -5px;
+      position: absolute;
+      top: 400px;
+      left: 400px;
+      z-index: 10000;
+    }
+
+	</style>
+</head>
+
+<body>
+  <p>Use arrow keys to walk around. The collision map only extends 500m in each direction, if you go too far collision will stop working.</p>
+  
+  <div style="display: none; float: left">
+    <canvas id="canvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+  </div>
+
+  <div id="map-overlay">
+	  <div id='map' style="width: 800px; height: 800px"></div>
+    <div class="dude"></div>
+    <!--div class="hr"></div>
+    <div class="vr"></div-->
+  </div>
+
+	<script src='mapbox-gl-dev.js'></script>
+	<script src='jquery.js'></script>
+  <script src='clipper.js'></script>
+	<script src='site.js'></script>
+  <script src='box2d.js'></script>
+  <script src='box2d-separator.js'></script>
+</body>
+</html>
