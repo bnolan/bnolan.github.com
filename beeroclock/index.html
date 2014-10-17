@@ -109,7 +109,7 @@
 			setInterval(function(){
 				var delta = Math.floor((beerOClock - (new Date)) / 1000);
 
-				if(delta<60 * 5 && !iframe){
+				if((delta > 0) && (delta<60 * 5 && !iframe)){
 					document.getElementById("europe").innerHTML = '<iframe width="200" height="180" src="//www.youtube.com/embed/9jK-NcRmVcw?autoplay=1" frameborder="0" allowfullscreen></iframe>';
 
 					iframe = true;
