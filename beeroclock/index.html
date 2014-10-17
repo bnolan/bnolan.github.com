@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - text</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: sans-serif;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			h1 {
+				position: absolute;
+				font-family: 'arial rounded mt bold', sans-serif;
+				color: white;
+				text-shadow: 1px 1px 3px #f0a;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+				font-size: 1.5em;
+				font-weight: bold;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+	</head>
+	<body>
+
+		<h1 id="info">
+			Time remaining until beer o clock...
+		</h1>
+
+		<script src="three.min.js"></script>
+		<script src="js/utils/GeometryUtils.js"></script>
+
+		<script src="js/shaders/ConvolutionShader.js"></script>
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/FilmShader.js"></script>
+		<script src="js/shaders/FXAAShader.js"></script>
+
+		<script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		<script src="js/postprocessing/MaskPass.js"></script>
+		<script src="js/postprocessing/BloomPass.js"></script>
+		<script src="js/postprocessing/FilmPass.js"></script>
+
+		<script src="js/Detector.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+
+		<!-- load the font files -->
+
+		<script src="fonts/droid/droid_sans_regular.typeface.js"></script>
+		<script src="fonts/droid/droid_sans_bold.typeface.js"></script>
+
+		<!-- todo async loader for fonts -->
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container, stats, permalink, hex, color;
+
+			var camera, cameraTarget, scene, renderer;
+
+			var composer;
+			var effectFXAA;
+
+			var group, textMesh1, textMesh2, textGeo, material;
+
+			var firstLetter = true;
+
+			var beerOClock = new Date;
+			beerOClock.setHours(16);
+			beerOClock.setMinutes(0);
+			beerOClock.setSeconds(0);
+
+			var text = "",
+
+				height = 20,
+				size = 70,
+				hover = 30,
+
+				curveSegments = 4,
+
+				bevelThickness = 2,
+				bevelSize = 1.5,
+				bevelSegments = 3,
+				bevelEnabled = true,
+
+				font = "droid sans", // helvetiker, optimer, gentilis, droid sans, droid serif
+				weight = "bold", // normal bold
+				style = "normal"; // normal italic
+
+			setInterval(function(){
+				var delta = Math.floor((beerOClock - (new Date)) / 1000);
+
+				if(delta<0){
+					text = "BEER!";
+					document.getElementById("info").style.display = "none";
+				}else{
+					var h = Math.floor(delta / 3600),
+						m = Math.floor((delta - h * 3600) / 60),
+						s = Math.floor((delta - h * 3600 - m * 60));
+
+					var pad = function(int){
+						return int.toString().length == 1 ? ("0" + int) : int;
+					}
+
+					text = h + ":" + pad(m) + ":" + pad(s);
+				}
+
+				refreshText();
+			}, 1000);
+
+			var mirror = false;
+
+			var fontMap = {
+
+				"helvetiker": 0,
+				"optimer": 1,
+				"gentilis": 2,
+				"droid sans": 3,
+				"droid serif": 4
+
+			};
+
+			var weightMap = {
+
+				"normal": 0,
+				"bold": 1
+
+			};
+
+			var reverseFontMap = {};
+			var reverseWeightMap = {};
+
+			for ( var i in fontMap ) reverseFontMap[ fontMap[i] ] = i;
+			for ( var i in weightMap ) reverseWeightMap[ weightMap[i] ] = i;
+
+			var targetRotation = 0;
+			var targetRotationOnMouseDown = 0;
+
+			var mouseX = 0;
+			var mouseXOnMouseDown = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var postprocessing = { enabled : false };
+			var glow = 0.9;
+
+			init();
+			animate();
+
+			function capitalize( txt ) {
+
+				return txt.substring( 0, 1 ).toUpperCase() + txt.substring( 1 );
+
+			}
+
+			function decimalToHex( d ) {
+
+				var hex = Number( d ).toString( 16 );
+				hex = "000000".substr( 0, 6 - hex.length ) + hex;
+				return hex.toUpperCase();
+
+			}
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				permalink = document.getElementById( "permalink" );
+
+				// CAMERA
+
+				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 1500 );
+				camera.position.set( 0, 400, 700 );
+
+				cameraTarget = new THREE.Vector3( 0, 200, 0 );
+
+				// SCENE
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0x000000, 250, 1400 );
+
+				// LIGHTS
+
+				var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
+				dirLight.position.set( 0, 0, 1 ).normalize();
+				scene.add( dirLight );
+
+				var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+				pointLight.position.set( 0, 100, 90 );
+				scene.add( pointLight );
+
+				//text = capitalize( font ) + " " + capitalize( weight );
+				//text = "abcdefghijklmnopqrstuvwxyz0123456789";
+				//text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+				// Get text from hash
+
+				var hash = document.location.hash.substr( 1 );
+
+				if ( hash.length !== 0 ) {
+
+					var colorhash  = hash.substring( 0, 6 );
+					var fonthash   = hash.substring( 6, 7 );
+					var weighthash = hash.substring( 7, 8 );
+					var pphash 	   = hash.substring( 8, 9 );
+					var bevelhash  = hash.substring( 9, 10 );
+					var texthash   = hash.substring( 10 );
+
+					hex = colorhash;
+					pointLight.color.setHex( parseInt( colorhash, 16 ) );
+
+					font = reverseFontMap[ parseInt( fonthash ) ];
+					weight = reverseWeightMap[ parseInt( weighthash ) ];
+
+					postprocessing.enabled = parseInt( pphash );
+					bevelEnabled = parseInt( bevelhash );
+
+					text = decodeURI( texthash );
+
+				} else {
+
+					pointLight.color.setRGB(1.0,0.85,0);
+					hex = decimalToHex( pointLight.color.getHex() );
+
+				}
+
+				material = new THREE.MeshFaceMaterial( [ 
+					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ), // front
+					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.SmoothShading } ) // side
+				] );
+
+				group = new THREE.Object3D();
+				group.position.y = 100;
+
+				scene.add( group );
+
+				createText();
+
+				var plane = new THREE.Mesh( new THREE.PlaneGeometry( 10000, 10000 ), new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5, transparent: true } ) );
+				plane.position.y = 100;
+				plane.rotation.x = - Math.PI / 2;
+				scene.add( plane );
+
+				// RENDERER
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				renderer.setClearColor( scene.fog.color, 1 );
+
+				container.appendChild( renderer.domElement );
+
+				// STATS
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				//container.appendChild( stats.domElement );
+
+				// POSTPROCESSING
+
+				renderer.autoClear = false;
+
+				var renderModel = new THREE.RenderPass( scene, camera );
+				var effectBloom = new THREE.BloomPass( 0.25 );
+				var effectFilm = new THREE.FilmPass( 0.5, 0.125, 2048, false );
+
+				effectFXAA = new THREE.ShaderPass( THREE.FXAAShader );
+
+				var width = window.innerWidth || 2;
+				var height = window.innerHeight || 2;
+
+				effectFXAA.uniforms[ 'resolution' ].value.set( 1 / width, 1 / height );
+
+				effectFilm.renderToScreen = true;
+
+				composer = new THREE.EffectComposer( renderer );
+
+				composer.addPass( renderModel );
+				composer.addPass( effectFXAA );
+				composer.addPass( effectBloom );
+				composer.addPass( effectFilm );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				composer.reset();
+
+				effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+
+			}
+
+			//
+
+			function boolToNum( b ) {
+
+				return b ? 1 : 0;
+
+			}
+
+
+			function createText() {
+
+				textGeo = new THREE.TextGeometry( text, {
+
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+
+					font: font,
+					weight: weight,
+					style: style,
+
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled,
+
+					material: 0,
+					extrudeMaterial: 1
+
+				});
+
+				textGeo.computeBoundingBox();
+				textGeo.computeVertexNormals();
+
+				// "fix" side normals by removing z-component of normals for side faces
+				// (this doesn't work well for beveled geometry as then we lose nice curvature around z-axis)
+
+				if ( ! bevelEnabled ) {
+
+					var triangleAreaHeuristics = 0.1 * ( height * size );
+
+					for ( var i = 0; i < textGeo.faces.length; i ++ ) {
+
+						var face = textGeo.faces[ i ];
+
+						if ( face.materialIndex == 1 ) {
+
+							for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
+
+								face.vertexNormals[ j ].z = 0;
+								face.vertexNormals[ j ].normalize();
+
+							}
+
+							var va = textGeo.vertices[ face.a ];
+							var vb = textGeo.vertices[ face.b ];
+							var vc = textGeo.vertices[ face.c ];
+
+							var s = THREE.GeometryUtils.triangleArea( va, vb, vc );
+
+							if ( s > triangleAreaHeuristics ) {
+
+								for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
+
+									face.vertexNormals[ j ].copy( face.normal );
+
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+
+				var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+
+				textMesh1 = new THREE.Mesh( textGeo, material );
+
+				textMesh1.position.x = centerOffset;
+				textMesh1.position.y = hover;
+				textMesh1.position.z = 0;
+
+				textMesh1.rotation.x = 0;
+				textMesh1.rotation.y = Math.PI * 2;
+
+				group.add( textMesh1 );
+
+				if ( mirror ) {
+
+					textMesh2 = new THREE.Mesh( textGeo, material );
+
+					textMesh2.position.x = centerOffset;
+					textMesh2.position.y = -hover;
+					textMesh2.position.z = height;
+
+					textMesh2.rotation.x = Math.PI;
+					textMesh2.rotation.y = Math.PI * 2;
+
+					group.add( textMesh2 );
+
+				}
+
+			}
+
+			function refreshText() {
+
+				group.remove( textMesh1 );
+				if ( mirror ) group.remove( textMesh2 );
+
+				if ( !text ) return;
+
+				createText();
+
+			}
+
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+
+			var positionY = 100,
+				velocityY = 0,
+				rotationY = -Math.PI / 4,
+				angularY = 0;
+
+			function render() {
+
+				group.rotation.y = rotationY ; //( targetRotation - group.rotation.y ) * 0.05;
+				group.position.y = positionY;
+
+				rotationY += angularY;
+				if(rotationY<0){
+					angularY += 0.0003;
+				}else{
+					angularY -= 0.0003;
+				}
+				
+				positionY -= velocityY;
+				velocityY += 0.1;
+
+				if(positionY <= 100.0){
+					velocityY = -5.0;
+				}
+
+				camera.position.y = 500;
+				camera.lookAt( cameraTarget );
+
+				renderer.clear();
+
+				if ( postprocessing.enabled ) {
+
+					composer.render( 0.05 );
+
+				} else {
+
+					renderer.render( scene, camera );
+
+				}
+
+			}
+
+		</script>
+
+	</body>
+</html>
