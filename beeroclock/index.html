@@ -25,6 +25,12 @@
 				font-size: 1.5em;
 				font-weight: bold;
 			}
+			iframe{
+				position: absolute;
+				left: 50%;
+				margin-left: -100px;
+				bottom: 30px;
+			}
 			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
 		</style>
 	</head>
@@ -33,6 +39,8 @@
 		<h1 id="info">
 			Time remaining until beer o clock...
 		</h1>
+
+		<div id="europe"></div>
 
 		<script src="three.min.js"></script>
 		<script src="js/utils/GeometryUtils.js"></script>
@@ -96,8 +104,16 @@
 				weight = "bold", // normal bold
 				style = "normal"; // normal italic
 
+			var iframe = false;
+
 			setInterval(function(){
 				var delta = Math.floor((beerOClock - (new Date)) / 1000);
+
+				if(delta<60 * 5 && !iframe){
+					document.getElementById("europe").innerHTML = '<iframe width="200" height="180" src="//www.youtube.com/embed/9jK-NcRmVcw?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+
+					iframe = true;
+				}
 
 				if(delta<0){
 					text = "BEER!";
