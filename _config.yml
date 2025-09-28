@@ -1,3 +1,0 @@
-paginate: 20
-paginate_path: "page/:num"
-markdown: kramdown
